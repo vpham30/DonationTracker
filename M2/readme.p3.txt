@@ -1,2 +1,2 @@
-Victoria Pham
-vpham30@gatech.edu
+Victoria Pham - vpham30@gatech.edu
+
