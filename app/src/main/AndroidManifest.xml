@@ -16,7 +16,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
         <activity android:name=".LoggedIn"></activity>
+=======
+        <activity
+            android:name=".LoginActivity"
+            android:label="LoginActivity">
+
+        </activity>
+>>>>>>> Evan
     </application>
 
 </manifest>
