@@ -13,7 +13,6 @@ public class WelcomeActivity extends AppCompatActivity {
     
     login = (Button) findViewById(R.id.login);
     register = (Button) findViewById(R.id.register);
-    back = (Button) findViewById(R.id.back);
     
     login.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -29,11 +28,6 @@ public class WelcomeActivity extends AppCompatActivity {
             }
     });
     
-    back.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            onBackPressed(v);
-        });
         
         public void onLoginPressed(View view) {
         Intent intent = new Intent(this, LoginActivity.class);
@@ -42,11 +36,6 @@ public class WelcomeActivity extends AppCompatActivity {
         
         public void onRegisterPressed(View view) {
             Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
-        }
-
-        public void onBackPressed(View view) {
-            Intent intent = new Intent(this, WelcomeActivity.class);
             startActivity(intent);
         }
 }
