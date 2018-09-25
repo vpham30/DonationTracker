@@ -15,13 +15,6 @@ public class LoggedIn extends AppCompatActivity {
         setContentView(R.layout.activity_logged_in);
 
         logout = findViewById(R.id.log_out_button);
-
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onLogoutPressed(v);
-            }
-        });
     }
 
     public void onLogoutPressed(View v) {

@@ -17,31 +17,17 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.content_login);
 
         user = (EditText) findViewById(R.id.usernameField);
         pass = (EditText) findViewById(R.id.passwordField);
         login = (Button) findViewById(R.id.login);
         cancel = (Button) findViewById(R.id.cancel);
-
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onLoginPressed(v);
-            }
-        });
-
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onCancelPressed(v);
-            }
-        });
     }
 
     public void onLoginPressed(View view) {
         if (user.getText().toString().equals("user") && pass.getText().toString().equals("pass")) {
-            Intent intent = new Intent(this, WelcomeActivity.class);
+            Intent intent = new Intent(this,LoggedIn.class);
             startActivity(intent);
         } else {
             Snackbar failed = Snackbar.make(view, "Invalid Login", Snackbar.LENGTH_SHORT);
