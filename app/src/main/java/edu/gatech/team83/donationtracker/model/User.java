@@ -21,6 +21,10 @@ public class User {
         return u.getName().equals(name);
     }
 
+    public boolean validate(User u){
+        return u.getPassword().equals(password);
+    }
+
     @Override
     public int hashCode(){
         return name.hashCode();
