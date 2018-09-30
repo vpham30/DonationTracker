@@ -9,7 +9,7 @@ public class Model {
     private static final Model _instance = new Model();
     public static Model getInstance() { return _instance; }
 
-    private Map<User,User> _users;
+    private static Map<User,User> _users;
 
     private Model(){
         _users = new HashMap<>();
@@ -29,9 +29,20 @@ public class Model {
             return true;
         }
     }
+    
+    /**
+     * Checks to see if a username has already been used
+     *
+     * @param username Username you want to check
+     * @returns true if username has been used, false otherwise
+     */
+    public boolean usernameCheck(String username) { 
+        return _users.containsKey(new User(username, ""));
+    }
 
     /**
      * Checks if a user exists with a username and password
+     * Used to login
      *
      * @param username username of user
      * @param password password of user
