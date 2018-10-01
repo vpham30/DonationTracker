@@ -9,12 +9,14 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import edu.gatech.team83.donationtracker.R;
+import edu.gatech.team83.donationtracker.model.Model;
 
 public class LoginActivity extends AppCompatActivity {
     EditText user;
     EditText pass;
     Button login;
     Button cancel;
+    Model model = Model.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onLoginPressed(View view) {
-        if (user.getText().toString().equals("user") && pass.getText().toString().equals("pass")) {
+        if (model.validateUser(user.getText().toString(), pass.getText().toString())) {
             Intent intent = new Intent(this,LoggedIn.class);
             startActivity(intent);
         } else {
