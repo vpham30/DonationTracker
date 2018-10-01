@@ -16,19 +16,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
         <activity android:name=".controller.LoggedIn"/>
         <activity
             android:name=".controller.LoginActivity"
             android:label="LoginActivity">
         </activity>
-=======
-        <activity android:name=".LoggedIn" />
         <activity
-            android:name=".LoginActivity"
+            android:name="controller.LoginActivity"
             android:label="LoginActivity" />
-        <activity android:name=".Registration"></activity>
->>>>>>> Victoria
+        <activity android:name=".controller.RegisterActivity"></activity>
     </application>
 
 </manifest>
