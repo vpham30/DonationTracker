@@ -52,7 +52,7 @@ public class RegisterActivity extends AppCompatActivity {
             Snackbar failed = Snackbar.make(v, "Password confirmation does not match!", Snackbar.LENGTH_SHORT);
             failed.show();
         //user already exists
-        } else if (model.validateUser(u.getName(), u.getPassword())) {
+        } else if (!model.usernameCheck(u.getName())) {
             Snackbar failed = Snackbar.make(v, "User already exists!", Snackbar.LENGTH_SHORT);
             failed.show();
         //It worked
