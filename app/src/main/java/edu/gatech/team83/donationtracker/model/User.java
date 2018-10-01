@@ -29,4 +29,9 @@ public class User {
     public int hashCode(){
         return name.hashCode();
     }
+
+    public static String getType() {
+        return "User";
+    }
+
 }
