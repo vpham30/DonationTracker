@@ -25,8 +25,8 @@ public class LoginActivity extends AppCompatActivity {
 
         user = (EditText) findViewById(R.id.usernameField);
         pass = (EditText) findViewById(R.id.passwordField);
-        login = (Button) findViewById(R.id.login);
-        cancel = (Button) findViewById(R.id.cancel);
+        login = (Button) findViewById(R.id.cancel);
+        cancel = (Button) findViewById(R.id.login);
     }
 
     public void onLoginPressed(View view) {

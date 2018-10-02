@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -34,7 +35,6 @@ public class RegisterActivity extends AppCompatActivity {
         pass = (EditText) findViewById(R.id.password);
         confirmPass = (EditText) findViewById(R.id.confirmPassword);
         type = (Spinner) findViewById(R.id.accountType);
-        u = new User(user.getText().toString(), pass.getText().toString());
 
         ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, accTypes);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -43,11 +43,13 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void onRegisterPressed(View v) {
         //pass word doesn't match
+        u = new User(user.getText().toString(), pass.getText().toString());
+
         if (!pass.getText().toString().equals(confirmPass.getText().toString())) {
             Snackbar failed = Snackbar.make(v, "Password confirmation does not match!", Snackbar.LENGTH_SHORT);
             failed.show();
         //user already exists
-        } else if (!model.usernameCheck(u.getName())) {
+        } else if (model.usernameCheck(u.getName())) {
             Snackbar failed = Snackbar.make(v, "User already exists!", Snackbar.LENGTH_SHORT);
             failed.show();
         //It worked
