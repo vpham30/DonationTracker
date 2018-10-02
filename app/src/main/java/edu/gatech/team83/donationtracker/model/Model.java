@@ -46,11 +46,15 @@ public class Model {
      *
      * @param username username of user
      * @param password password of user
-     * @return False if incorrect user/pass combo, true if correct
+     * @return False if incorrect user/pass combo or user does not exist, true if correct
      */
     public boolean validateUser(String username, String password) {
         User u = new User(username, password);
-        return _users.get(u).validate(u);
+        if (!(_users.get(u) == null)) {
+            return _users.get(u).validate(u);
+        } else {
+            return false;
+        }
     }
 
 }

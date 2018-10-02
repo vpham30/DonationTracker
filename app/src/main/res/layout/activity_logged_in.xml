@@ -20,8 +20,8 @@
 
     <TextView
         android:id="@+id/textView_logged_in"
-        android:layout_width="190dp"
-        android:layout_height="34dp"
+        android:layout_width="195dp"
+        android:layout_height="30dp"
         android:text="You are logged in"
         android:textColor="@color/colorPrimary"
         android:textSize="25sp"
