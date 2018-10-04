@@ -24,8 +24,7 @@ import java.util.Map;
 
 import edu.gatech.team83.donationtracker.R;
 import edu.gatech.team83.donationtracker.model.AccountType;
-import edu.gatech.team83.donationtracker.model.Model;
-import edu.gatech.team83.donationtracker.model.User;
+
 
 public class RegisterActivity extends AppCompatActivity {
     private EditText user;
@@ -34,16 +33,15 @@ public class RegisterActivity extends AppCompatActivity {
     private Spinner type;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
-    String accTypes[] = {"Basic", "Location Employee", "Manager", "Admin"};
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
-        user = (EditText) findViewById(R.id.username);
-        pass = (EditText) findViewById(R.id.password);
-        confirmPass = (EditText) findViewById(R.id.confirmPassword);
-        type = (Spinner) findViewById(R.id.accountType);
+        user = findViewById(R.id.username);
+        pass = findViewById(R.id.password);
+        confirmPass = findViewById(R.id.confirmPassword);
+        type = findViewById(R.id.accountType);
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 

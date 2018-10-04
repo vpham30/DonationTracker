@@ -3,10 +3,8 @@ package edu.gatech.team83.donationtracker.controller;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -16,13 +14,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 import edu.gatech.team83.donationtracker.R;
-import edu.gatech.team83.donationtracker.model.Model;
 
 public class LoginActivity extends AppCompatActivity {
     EditText user;
     EditText pass;
-    Button login;
-    Button cancel;
+
     private FirebaseAuth mAuth;
 
     @Override
@@ -30,10 +26,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_login);
 
-        user = (EditText) findViewById(R.id.usernameField);
-        pass = (EditText) findViewById(R.id.passwordField);
-        login = (Button) findViewById(R.id.cancel);
-        cancel = (Button) findViewById(R.id.login);
+        user = findViewById(R.id.usernameField);
+        pass = findViewById(R.id.passwordField);
         mAuth = FirebaseAuth.getInstance();
     }
 
