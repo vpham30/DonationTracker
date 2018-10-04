@@ -2,75 +2,90 @@ package edu.gatech.team83.donationtracker.controller;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import edu.gatech.team83.donationtracker.R;
-import edu.gatech.team83.donationtracker.model.Admin;
-import edu.gatech.team83.donationtracker.model.LocationEmployee;
-import edu.gatech.team83.donationtracker.model.Manager;
-import edu.gatech.team83.donationtracker.model.Model;
-import edu.gatech.team83.donationtracker.model.User;
+import edu.gatech.team83.donationtracker.model.AccountType;
+
 
 public class RegisterActivity extends AppCompatActivity {
     private EditText user;
     private EditText pass;
     private EditText confirmPass;
     private Spinner type;
-    private Model model = Model.getInstance();
-    private User u;
-    String accTypes[] = {"User", "Location Employee", "Manager", "Admin"};
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
-        user = (EditText) findViewById(R.id.username);
-        pass = (EditText) findViewById(R.id.password);
-        confirmPass = (EditText) findViewById(R.id.confirmPassword);
-        type = (Spinner) findViewById(R.id.accountType);
+        user = findViewById(R.id.username);
+        pass = findViewById(R.id.password);
+        confirmPass = findViewById(R.id.confirmPassword);
+        type = findViewById(R.id.accountType);
+        mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, accTypes);
+        ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, AccountType.values());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         type.setAdapter(adapter);
     }
 
     public void onRegisterPressed(View v) {
-        //pass word doesn't match
-        u = new User(user.getText().toString(), pass.getText().toString());
-
         if (!pass.getText().toString().equals(confirmPass.getText().toString())) {
             Snackbar failed = Snackbar.make(v, "Password confirmation does not match!", Snackbar.LENGTH_SHORT);
             failed.show();
-        //user already exists
-        } else if (model.usernameCheck(u.getName())) {
-            Snackbar failed = Snackbar.make(v, "User already exists!", Snackbar.LENGTH_SHORT);
-            failed.show();
-        //It worked
         } else {
-            switch (type.getSelectedItem().toString()) {
-                case "Admin":
-                    u = new Admin(user.getText().toString(), pass.getText().toString());
-                    break;
-                case "Manager":
-                    u = new Manager(user.getText().toString(), pass.getText().toString());
-                    break;
-                case "Location Employee":
-                    u = new LocationEmployee(user.getText().toString(), pass.getText().toString());
-                    break;
-                default:
-                    u = new User(user.getText().toString(), pass.getText().toString());
-                    break;
+            mAuth.createUserWithEmailAndPassword(user.getText().toString().trim(), pass.getText().toString().trim())
+                    //Once it's done
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                //if the user was added successfully add type to the db
+                                Map<String, String> data = new HashMap<>();
+                                data.put("type", ((AccountType) type.getSelectedItem()).name());
+                                db.collection("users").document(mAuth.getCurrentUser().getUid())
+                                        .set(data)
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                Toast.makeText(RegisterActivity.this, "Registered!", Toast.LENGTH_SHORT).show();
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Toast.makeText(RegisterActivity.this, "" + e, Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                Intent intent = new Intent(RegisterActivity.this, LoggedIn.class);
+                                startActivity(intent);
+                            } else {
+                                //else, return exception
+                                Toast.makeText(RegisterActivity.this, "" + task.getException(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }); {
             }
-            model.addUser(u);
-            Intent intent = new Intent(this,LoggedIn.class);
-            startActivity(intent);
         }
     }
 
