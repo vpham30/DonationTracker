@@ -37,7 +37,7 @@ public class Model {
      * @returns true if username has been used, false otherwise
      */
     public boolean usernameCheck(String username) { 
-        return _users.containsKey(new User(username, ""));
+        return _users.containsKey(new User(username, "", AccountType.Basic));
     }
 
     /**
@@ -49,7 +49,7 @@ public class Model {
      * @return False if incorrect user/pass combo or user does not exist, true if correct
      */
     public boolean validateUser(String username, String password) {
-        User u = new User(username, password);
+        User u = new User(username, password, AccountType.Basic);
         if (!(_users.get(u) == null)) {
             return _users.get(u).validate(u);
         } else {
