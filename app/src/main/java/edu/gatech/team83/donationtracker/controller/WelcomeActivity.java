@@ -26,9 +26,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import edu.gatech.team83.donationtracker.R;
+import edu.gatech.team83.donationtracker.model.Location;
+import edu.gatech.team83.donationtracker.model.Model;
 
 public class WelcomeActivity extends AppCompatActivity {
     private FirebaseFirestore db;
+    private Model model = Model.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +52,7 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     public void loadData(View view) {
-        db.collection("locations").document("count")
+        db.collection("counters").document("loccount")
                 .get().addOnCompleteListener(this, new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -57,7 +60,7 @@ public class WelcomeActivity extends AppCompatActivity {
                     Reader in;
                     Map<String, Object> data;
                     long num;
-                    DocumentReference count = db.collection("locations").document("count");
+                    DocumentReference count = db.collection("counters").document("loccount");
                     if (task.getResult().get("num") == null) {
                         num = 0;
                     } else {
@@ -68,19 +71,19 @@ public class WelcomeActivity extends AppCompatActivity {
                         in = new InputStreamReader(is);
                         Iterable<CSVRecord> locations = CSVFormat.EXCEL.withHeader().parse(in);
                         for (CSVRecord location : locations) {
-                            data = new HashMap<>();
-                            data.put("id", ++num);
-                            data.put("LocationName", location.get("Name"));
-                            data.put("LocationType", location.get("Type"));
-                            data.put("Longitude", location.get("Longitude"));
-                            data.put("Latitude", location.get("Latitude"));
-                            data.put("Address", location.get("Street Address"));
-                            data.put("PhoneNumber", location.get("Phone"));
-                            db.collection("locations").add(data);
+                            Location loc = new Location();
+                            loc.setId(++num);
+                            loc.setName(location.get("Name"));
+                            loc.setType(location.get("Type"));
+                            loc.setLongitude(location.get("Longitude"));
+                            loc.setLatitude(location.get("Latitude"));
+                            loc.setAddress(location.get("Street Address"));
+                            loc.setPhonenumber(location.get("Phone"));
+                            db.collection("locations").add(loc);
                         }
                         Map<String, Object> cdata = new HashMap<>();
                         cdata.put("num", num);
-                        db.collection("locations").document("count").set(cdata);
+                        count.set(cdata);
                         Toast.makeText(WelcomeActivity.this, "success", Toast.LENGTH_SHORT).show();
                     } catch (FileNotFoundException e) {
                         Toast.makeText(WelcomeActivity.this, "file not found", Toast.LENGTH_SHORT).show();
@@ -92,5 +95,6 @@ public class WelcomeActivity extends AppCompatActivity {
                 }
             }
         });
+        model.updateFromDatabase();
     }
 }
