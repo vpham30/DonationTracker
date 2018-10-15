@@ -24,5 +24,8 @@
         <activity android:name=".controller.RegisterActivity"
             android:label="Register">
         </activity>
+        <activity android:name=".controller.LocationRecyclerActivity"
+            android:label="LocationRecycler">
+        </activity>
     </application>
 </manifest>
