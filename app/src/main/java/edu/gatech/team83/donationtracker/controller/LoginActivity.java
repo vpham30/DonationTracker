@@ -14,10 +14,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 import edu.gatech.team83.donationtracker.R;
+import edu.gatech.team83.donationtracker.model.Model;
 
 public class LoginActivity extends AppCompatActivity {
     EditText user;
     EditText pass;
+    private Model model;
 
     private FirebaseAuth mAuth;
 
@@ -29,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
         user = findViewById(R.id.usernameField);
         pass = findViewById(R.id.passwordField);
         mAuth = FirebaseAuth.getInstance();
+        model = Model.getInstance();
     }
 
     public void onLoginPressed(View view) {
@@ -37,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(LoginActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                            model.updateFromDatabase();
                             Intent intent = new Intent(LoginActivity.this, LocationRecyclerActivity.class);
                             startActivity(intent);
                         } else {

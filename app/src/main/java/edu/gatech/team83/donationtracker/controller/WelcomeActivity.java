@@ -85,6 +85,7 @@ public class WelcomeActivity extends AppCompatActivity {
                         cdata.put("num", num);
                         count.set(cdata);
                         Toast.makeText(WelcomeActivity.this, "success", Toast.LENGTH_SHORT).show();
+                        model.updateFromDatabase();
                     } catch (FileNotFoundException e) {
                         Toast.makeText(WelcomeActivity.this, "file not found", Toast.LENGTH_SHORT).show();
                     } catch (IOException f) {
@@ -95,6 +96,5 @@ public class WelcomeActivity extends AppCompatActivity {
                 }
             }
         });
-        model.updateFromDatabase();
     }
 }

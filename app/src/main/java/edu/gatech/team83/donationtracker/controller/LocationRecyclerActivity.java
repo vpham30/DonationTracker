@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,16 +29,22 @@ public class LocationRecyclerActivity extends AppCompatActivity {
         setContentView(R.layout.location_list);
 
         //Set up the recycle view
-        //Need to know what layout to use
+        //Need to know what layout to use\
+        model = Model.getInstance();
         View recyclerView = findViewById(R.id.recycler_view);
         setupRecyclerView((RecyclerView) recyclerView);
-        model = model.getInstance();
     }
 
     public void onAddLocationPressed(View v) {
         // take us to a blank edit page
         Context context = v.getContext();
         //TODO temp change!
+        Intent intent = new Intent(context, WelcomeActivity.class);
+        startActivity(intent);
+    }
+
+    public void onLogoutPressed(View v) {
+        Context context = v.getContext();
         Intent intent = new Intent(context, WelcomeActivity.class);
         startActivity(intent);
     }
@@ -58,13 +65,14 @@ public class LocationRecyclerActivity extends AppCompatActivity {
         @Override
         public LocationViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-            View view = inflater.inflate(R.layout.location_list_item, null);
+            View view = inflater.inflate(R.layout.location_list_item, parent, false);
             return new LocationViewHolder(view);
         }
 
         @Override
         public void onBindViewHolder(LocationViewHolder holder, final int position) {
             holder.locName.setText(locList.get(position).getName());
+            Log.e("test", "got here");
             //Listener for when you click a item in the recycler
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
