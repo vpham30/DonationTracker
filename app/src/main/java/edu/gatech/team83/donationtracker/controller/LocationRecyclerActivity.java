@@ -111,4 +111,6 @@ public class LocationRecyclerActivity extends AppCompatActivity {
         }
 
     }
+
+    //todo add refresh
 }

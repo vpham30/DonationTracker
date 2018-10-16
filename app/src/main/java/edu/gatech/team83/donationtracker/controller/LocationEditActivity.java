@@ -35,6 +35,7 @@ public class LocationEditActivity extends AppCompatActivity {
         latitude = findViewById(R.id.latitude_input);
         address = findViewById(R.id.address_input);
         phoneNumber = findViewById(R.id.phone_input);
+        model = Model.getInstance();
 
         if(getIntent().hasExtra("Location")) {
             location = (Location) getIntent().getParcelableExtra("Location");
@@ -72,8 +73,11 @@ public class LocationEditActivity extends AppCompatActivity {
         } else {
             model.addLocation(loc);
         }
+        Intent intent = new Intent(this, LocationRecyclerActivity.class);
+        startActivity(intent);
     }
 
+    //todo add onCancelPressed
 }
 
 

@@ -78,11 +78,12 @@ public class Model {
     public void addLocation(Location loc) {
         loc.setId(++count);
         db.collection("locations").document(loc.getName() + "#" + count).set(loc);
-        db.collection("counters").document("loccount").update("num", "count");
+        db.collection("counters").document("loccount").update("num", count);
         updateFromDatabase();
     }
 
     public void editLocation(Location toedit, Location loc) {
+        //TODO Change name preserve id
         db.collection("locations").document(toedit.getName() + "#" + toedit.getId()).set(loc);
         updateFromDatabase();
     }
