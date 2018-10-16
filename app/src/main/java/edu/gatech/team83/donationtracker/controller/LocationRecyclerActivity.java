@@ -39,7 +39,7 @@ public class LocationRecyclerActivity extends AppCompatActivity {
         // take us to a blank edit page
         Context context = v.getContext();
         //TODO temp change!
-        Intent intent = new Intent(context, WelcomeActivity.class);
+        Intent intent = new Intent(context, LocationEditActivity.class);
         startActivity(intent);
     }
 
@@ -81,10 +81,10 @@ public class LocationRecyclerActivity extends AppCompatActivity {
                     Context context = view.getContext();
                     //this needs some work
                     //TODO verify class name
-                    Intent intent = new Intent(context, WelcomeActivity.class);
+                    Intent intent = new Intent(context, LocationDetailActivity.class);
                     //sends the id of the location
                     //TODO verify works
-                    intent.putExtra("Location Position", position);
+                    intent.putExtra("Location", locList.get(position));
                     startActivity(intent);
                 }
             });
