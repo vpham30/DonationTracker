@@ -77,7 +77,16 @@ public class LocationEditActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    //todo add onCancelPressed
+    public void onLocationCancelPressed(View v) {
+        if (getIntent().hasExtra("Location")) {
+            Intent intent = new Intent(this, LocationDetailActivity.class);
+            intent.putExtra("Location", location);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(this, LocationRecyclerActivity.class);
+            startActivity(intent);
+        }
+    }
 }
 
 

@@ -67,9 +67,6 @@ public class Model {
         });
     }
 
-    public FirebaseUser getCurrentuser() {
-        return currentuser;
-    }
 
     public long getCount() {
         return count;
@@ -87,6 +84,10 @@ public class Model {
         db.collection("locations").document(toedit.getName() + "#" + toedit.getId()).delete();
         db.collection("locations").document(loc.getName() + "#" + toedit.getId()).set(loc);
         updateFromDatabase();
+    }
+
+    public String getType() {
+        return usertype;
     }
 
 }
