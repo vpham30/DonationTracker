@@ -88,4 +88,9 @@ public class Location implements Parcelable {
         }
     };
 
+    @Override
+    public boolean equals(Object o){
+        Location loc = (Location) o;
+        return loc.id == id;
+    }
 }

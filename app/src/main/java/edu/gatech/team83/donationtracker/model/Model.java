@@ -19,6 +19,7 @@ public class Model {
     private static FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private static ArrayList<Location> locations;
     private static FirebaseUser currentuser;
+    private static long count;
     private static String usertype;
     private static FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -44,6 +45,14 @@ public class Model {
                 }
             }
         });
+        db.collection("counters").document("loccount").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()) {
+                    count = task.getResult().getLong("num");
+                }
+            }
+        });
     }
 
     public void setCurrentuser(FirebaseUser user) {
@@ -62,5 +71,20 @@ public class Model {
         return currentuser;
     }
 
+    public long getCount() {
+        return count;
+    }
+
+    public void addLocation(Location loc) {
+        count = count + 1;
+        db.collection("locations").document(loc.getName() + "#" + count).set(loc);
+        db.collection("counters").document("loccount").update("num", "count");
+        updateFromDatabase();
+    }
+
+    public void editLocation(Location toedit, Location loc) {
+        db.collection("locations").document(toedit.getName() + "#" + toedit.getId()).set(loc);
+        updateFromDatabase();
+    }
 
 }
