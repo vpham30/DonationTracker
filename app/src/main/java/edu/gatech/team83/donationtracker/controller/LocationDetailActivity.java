@@ -49,7 +49,7 @@ public class LocationDetailActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void onEditLocationPressed(View v) {
+    public void onLocationSubmitPressed(View v) {
         Context context = v.getContext();
         Intent intent = new Intent(context, LocationEditActivity.class);
         intent.putExtra("Location", location);
