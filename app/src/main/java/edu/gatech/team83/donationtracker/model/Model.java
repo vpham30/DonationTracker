@@ -76,7 +76,7 @@ public class Model {
     }
 
     public void addLocation(Location loc) {
-        count = count + 1;
+        loc.setId(++count);
         db.collection("locations").document(loc.getName() + "#" + count).set(loc);
         db.collection("counters").document("loccount").update("num", "count");
         updateFromDatabase();
