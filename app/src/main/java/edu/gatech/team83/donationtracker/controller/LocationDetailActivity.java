@@ -14,8 +14,7 @@ import edu.gatech.team83.donationtracker.model.Location;
 import edu.gatech.team83.donationtracker.model.Model;
 
 public class LocationDetailActivity extends AppCompatActivity {
-    private Model model;
-    private ArrayList<Location> locations;
+    private Location location;
     private TextView locationName;
     private TextView locationType;
     private TextView longitude;
@@ -26,10 +25,20 @@ public class LocationDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.location_detail);
+        location = (Location) getIntent().getParcelableExtra("Location");
+        locationName = findViewById(R.id.location_name);
+        locationType = findViewById(R.id.location_type);
+        longitude = findViewById(R.id.location_longitude);
+        latitude = findViewById(R.id.location_latitude);
+        address = findViewById(R.id.location_address);
+        phone = findViewById(R.id.location_phone_number);
 
-        // TODO need to access location
-
-
+        locationName.setText(location.getName());
+        locationType.setText(location.getType());
+        longitude.setText(location.getLongitude());
+        latitude.setText(location.getLatitude());
+        address.setText(location.getAddress());
+        phone.setText(location.getPhonenumber());
     }
 
     public void onBackPressed(View v) {

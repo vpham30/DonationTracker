@@ -27,5 +27,11 @@
         <activity android:name=".controller.LocationRecyclerActivity"
             android:label="LocationRecycler">
         </activity>
+        <activity android:name=".controller.LocationDetailActivity"
+            android:label="LocationDetail">
+        </activity>
+        <activity android:name=".controller.LocationEditActivity"
+            android:label="LocationEdit">
+        </activity>
     </application>
 </manifest>

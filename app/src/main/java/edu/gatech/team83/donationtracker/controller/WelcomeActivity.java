@@ -42,6 +42,7 @@ public class WelcomeActivity extends AppCompatActivity {
     }
         
     public void onLoginPressed(View view) {
+        model.updateFromDatabase();
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
