@@ -2,14 +2,11 @@ package edu.gatech.team83.donationtracker.controller;
 
 import android.support.v7.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 
-import java.util.ArrayList;
 
 import edu.gatech.team83.donationtracker.R;
 import edu.gatech.team83.donationtracker.model.Location;
@@ -77,7 +74,16 @@ public class LocationEditActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    //todo add onCancelPressed
+    public void onLocationCancelPressed(View v) {
+        if (getIntent().hasExtra("Location")) {
+            Intent intent = new Intent(this, LocationDetailActivity.class);
+            intent.putExtra("Location", location);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(this, LocationRecyclerActivity.class);
+            startActivity(intent);
+        }
+    }
 }
 
 
