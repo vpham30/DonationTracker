@@ -7,11 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
 import edu.gatech.team83.donationtracker.R;
 import edu.gatech.team83.donationtracker.model.Location;
-import edu.gatech.team83.donationtracker.model.Model;
 
 public class LocationDetailActivity extends AppCompatActivity {
     private Location location;
@@ -25,7 +22,12 @@ public class LocationDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.location_detail);
+
+
         location = (Location) getIntent().getParcelableExtra("Location");
+
+
+
         locationName = findViewById(R.id.location_name);
         locationType = findViewById(R.id.location_type);
         longitude = findViewById(R.id.location_longitude);

@@ -11,126 +11,122 @@
     android:paddingTop="16dp">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
         android:id="@+id/location_name_text"
-        android:text="Location Name"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/name_input"
+        android:layout_alignStart="@+id/name_input"
+        android:text="Location Name" />
 
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/location_name_text"
-        android:layout_alignParentStart="true"
         android:id="@+id/name_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/location_longitude_text"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
         android:inputType="text"
-        android:text="Name"
-        android:ems="10"/>
+        android:text="Name" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/name_input"
-        android:layout_alignParentStart="true"
         android:id="@+id/location_type_text"
-        android:text="Location Type"
-        android:layout_marginTop="15dp" />
-
-    <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/location_type_text"
-        android:layout_alignParentStart="true"
-        android:id="@+id/type_spinner"/>
-
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/type_spinner"
-        android:layout_alignParentStart="true"
+        android:layout_above="@+id/location_type_input"
+        android:layout_alignStart="@+id/location_name_text"
+        android:text="Location Type" />
+
+    <EditText
+        android:id="@+id/location_type_input"
+        android:layout_width="353dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/location_latitude_text"
+        android:layout_alignStart="@+id/location_name_text"
+        android:text="Location Type" />
+
+    <TextView
         android:id="@+id/location_longitude_text"
-        android:text="Location Longitude"
-        android:layout_marginTop="15dp" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/longitude_input"
+        android:layout_alignStart="@+id/location_name_text"
+        android:text="Location Longitude" />
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/location_longitude_text"
-        android:layout_alignParentStart="true"
         android:id="@+id/longitude_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/location_type_text"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
         android:inputType="number"
-        android:text="Longitude"
-        android:ems="10"/>
+        android:text="Longitude" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/longitude_input"
-        android:layout_alignParentStart="true"
         android:id="@+id/location_latitude_text"
-        android:text="Location Latitude"
-        android:layout_marginTop="15dp" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/latitude_input"
+        android:layout_alignStart="@+id/location_name_text"
+        android:text="Location Latitude" />
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/location_latitude_text"
-        android:layout_alignParentStart="true"
         android:id="@+id/latitude_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/location_address_text"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
         android:inputType="number"
-        android:text="Latitude"
-        android:ems="10"/>
+        android:text="Latitude" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/latitude_input"
-        android:layout_alignParentStart="true"
         android:id="@+id/location_address_text"
-        android:text="Location Address"
-        android:layout_marginTop="15dp" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/location_address_text"
-        android:layout_alignParentStart="true"
-        android:id="@+id/address_input"
-        android:inputType="text"
-        android:text="Address"
-        android:ems="10"/>
-
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/address_input"
-        android:layout_alignParentStart="true"
-        android:id="@+id/location_phone_text"
-        android:text="Location Phone Number"
-        android:layout_marginTop="15dp" />
+        android:layout_above="@+id/address_input"
+        android:layout_alignStart="@+id/location_name_text"
+        android:text="Location Address" />
 
     <EditText
+        android:id="@+id/address_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/location_phone_text"
-        android:layout_alignParentStart="true"
+        android:layout_above="@+id/location_phone_text"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Address" />
+
+    <TextView
+        android:id="@+id/location_phone_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/phone_input"
+        android:layout_alignStart="@+id/location_name_text"
+        android:text="Location Phone Number" />
+
+    <EditText
         android:id="@+id/phone_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="101dp"
+        android:ems="10"
         android:inputType="number"
-        android:text="Phone Number"
-        android:ems="10"/>
+        android:text="Phone Number" />
 
     <Button
         android:id="@+id/location_edit_submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="35dp"
-        android:layout_marginStart="69dp"
-        android:text="Submit"
-        android:onClick="onLocationSubmitPressed"/>
+        android:layout_marginBottom="20dp"
+        android:layout_toEndOf="@+id/location_name_text"
+        android:onClick="onLocationSubmitPressed"
+        android:text="Submit" />
 
     <Button
         android:id="@+id/location_edit_cancel2"
