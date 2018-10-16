@@ -83,8 +83,9 @@ public class Model {
     }
 
     public void editLocation(Location toedit, Location loc) {
-        //TODO Change name preserve id
-        db.collection("locations").document(toedit.getName() + "#" + toedit.getId()).set(loc);
+        loc.setId(toedit.getId());
+        db.collection("locations").document(toedit.getName() + "#" + toedit.getId()).delete();
+        db.collection("locations").document(loc.getName() + "#" + toedit.getId()).set(loc);
         updateFromDatabase();
     }
 
