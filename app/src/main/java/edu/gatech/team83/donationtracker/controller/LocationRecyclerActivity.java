@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseUser;
+
 import java.util.List;
 
 import edu.gatech.team83.donationtracker.R;
@@ -38,7 +40,7 @@ public class LocationRecyclerActivity extends AppCompatActivity {
     public void onAddLocationPressed(View v) {
         // take us to a blank edit page
         Context context = v.getContext();
-        //TODO temp change!
+
         Intent intent = new Intent(context, LocationEditActivity.class);
         startActivity(intent);
     }

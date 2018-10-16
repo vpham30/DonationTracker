@@ -80,7 +80,7 @@ public class WelcomeActivity extends AppCompatActivity {
                             loc.setLatitude(location.get("Latitude"));
                             loc.setAddress(location.get("Street Address"));
                             loc.setPhonenumber(location.get("Phone"));
-                            db.collection("locations").add(loc);
+                            db.collection("locations").document(location.get("Name") + "#" + num).set(loc);
                         }
                         Map<String, Object> cdata = new HashMap<>();
                         cdata.put("num", num);
