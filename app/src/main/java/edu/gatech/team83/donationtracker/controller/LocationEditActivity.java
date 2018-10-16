@@ -58,7 +58,7 @@ public class LocationEditActivity extends AppCompatActivity {
 
     }
 
-    public void onLocationSubmitPressed() {
+    public void onLocationSubmitPressed(View v) {
         Location loc = new Location();
         loc.setName(name.getText().toString());
         loc.setType(type.getText().toString());
