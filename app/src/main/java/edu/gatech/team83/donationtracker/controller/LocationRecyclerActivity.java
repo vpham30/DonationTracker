@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -11,8 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
 
@@ -38,16 +37,20 @@ public class LocationRecyclerActivity extends AppCompatActivity {
     }
 
     public void onAddLocationPressed(View v) {
-        // take us to a blank edit page
-        Context context = v.getContext();
-
-        Intent intent = new Intent(context, LocationEditActivity.class);
-        startActivity(intent);
+        if (model.getType().equals("Admin")) {
+            Context context = v.getContext();
+            Intent intent = new Intent(context, LocationEditActivity.class);
+            startActivity(intent);
+        } else {
+            Snackbar failed = Snackbar.make(v, "You are not an admin", Snackbar.LENGTH_SHORT);
+            failed.show();
+        }
     }
 
     public void onLogoutPressed(View v) {
         Context context = v.getContext();
         Intent intent = new Intent(context, WelcomeActivity.class);
+        model.signout();
         startActivity(intent);
     }
 

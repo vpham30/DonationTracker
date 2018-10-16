@@ -90,4 +90,8 @@ public class Model {
         return usertype;
     }
 
+    public void signout() {
+        mAuth.signOut();
+    }
+
 }
