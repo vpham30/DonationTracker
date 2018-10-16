@@ -37,7 +37,6 @@ public class Model {
 
     public void updateFromDatabase() {
         db.collection("locations").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful()) {
