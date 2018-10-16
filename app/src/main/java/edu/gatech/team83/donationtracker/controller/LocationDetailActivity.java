@@ -7,12 +7,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import edu.gatech.team83.donationtracker.R;
 import edu.gatech.team83.donationtracker.model.Location;
 import edu.gatech.team83.donationtracker.model.Model;
 
 public class LocationDetailActivity extends AppCompatActivity {
-    private Model location;
+    private Model model;
+    private ArrayList<Location> locations;
     private TextView locationName;
     private TextView locationType;
     private TextView longitude;

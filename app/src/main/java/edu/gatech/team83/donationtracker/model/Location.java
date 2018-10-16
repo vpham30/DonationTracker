@@ -1,6 +1,9 @@
 package edu.gatech.team83.donationtracker.model;
 
-public class Location {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Location implements Parcelable {
 
     private long id;
     private String name;
@@ -45,4 +48,44 @@ public class Location {
 
     public String getPhonenumber() { return phonenumber; }
     public void setPhonenumber(String phonenumber) { this.phonenumber = phonenumber; }
+
+
+    public Location(Parcel in) {
+        this.id = in.readLong();
+        this.name = in.readString();
+        this.type = in.readString();
+        this.longitude = in.readString();
+        this.latitude = in.readString();
+        this.address = in.readString();
+        this.phonenumber = in.readString();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(id);
+        dest.writeString(name);
+        dest.writeString(type);
+        dest.writeString(longitude);
+        dest.writeString(latitude);
+        dest.writeString(address);
+        dest.writeString(phonenumber);
+    }
+
+    public static final Parcelable.Creator<Location> CREATOR
+            = new Parcelable.Creator<Location> (){
+
+        public Location createFromParcel(Parcel in) {
+            return new Location(in);
+        }
+
+        public Location[] newArray (int size) {
+            return new Location[size];
+        }
+    };
+
 }
