@@ -3,6 +3,8 @@ package edu.gatech.team83.donationtracker.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+
 public class Location implements Parcelable {
 
     private long id;
@@ -12,6 +14,7 @@ public class Location implements Parcelable {
     private String latitude;
     private String address;
     private String phonenumber;
+    private ArrayList<Item> inventory;
 
     public Location(int id, String type, String name, String longitude, String latitude, String address, String phonenumber) {
         this.id = id;
@@ -21,6 +24,7 @@ public class Location implements Parcelable {
         this.latitude = latitude;
         this.address = address;
         this.phonenumber = phonenumber;
+        inventory = new ArrayList<>();
     }
 
     public Location(){
@@ -49,15 +53,19 @@ public class Location implements Parcelable {
     public String getPhonenumber() { return phonenumber; }
     public void setPhonenumber(String phonenumber) { this.phonenumber = phonenumber; }
 
+    public ArrayList<Item> getInventory() { return inventory; }
+    public void setInventory(ArrayList<Item> inventory) { this.inventory = inventory; }
+
 
     public Location(Parcel in) {
-        this.id = in.readLong();
-        this.name = in.readString();
-        this.type = in.readString();
-        this.longitude = in.readString();
-        this.latitude = in.readString();
-        this.address = in.readString();
-        this.phonenumber = in.readString();
+        id = in.readLong();
+        name = in.readString();
+        type = in.readString();
+        longitude = in.readString();
+        latitude = in.readString();
+        address = in.readString();
+        phonenumber = in.readString();
+        inventory = in.readArrayList(Item.class.getClassLoader());
     }
 
     @Override
@@ -74,6 +82,7 @@ public class Location implements Parcelable {
         dest.writeString(latitude);
         dest.writeString(address);
         dest.writeString(phonenumber);
+        dest.writeList(inventory);
     }
 
     public static final Parcelable.Creator<Location> CREATOR

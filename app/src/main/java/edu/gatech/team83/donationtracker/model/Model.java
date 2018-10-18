@@ -75,15 +75,34 @@ public class Model {
     public void addLocation(Location loc) {
         loc.setId(++count);
         db.collection("locations").document(loc.getName() + "#" + count).set(loc);
-        db.collection("counters").document("loccount").update("num", count);
-        updateFromDatabase();
+        db.collection("counters").document("loccount").update("num", count).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                updateFromDatabase();
+            }
+        });
     }
 
     public void editLocation(Location toedit, Location loc) {
         loc.setId(toedit.getId());
         db.collection("locations").document(toedit.getName() + "#" + toedit.getId()).delete();
-        db.collection("locations").document(loc.getName() + "#" + toedit.getId()).set(loc);
-        updateFromDatabase();
+        db.collection("locations").document(loc.getName() + "#" + toedit.getId()).set(loc).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                updateFromDatabase();
+            }
+        });
+    }
+
+    public void addDonation(Location loc, Item dono) {
+        ArrayList<Item> newinv = loc.getInventory();
+        newinv.add(dono);
+        db.collection("locations").document(loc.getName() + "#" + loc.getId()).update("inventory", newinv).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                updateFromDatabase();
+            }
+        });
     }
 
     public String getType() {

@@ -24,6 +24,7 @@ import java.util.Map;
 
 import edu.gatech.team83.donationtracker.R;
 import edu.gatech.team83.donationtracker.model.AccountType;
+import edu.gatech.team83.donationtracker.model.User;
 
 
 public class RegisterActivity extends AppCompatActivity {
@@ -61,10 +62,9 @@ public class RegisterActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 //if the user was added successfully add type to the db
-                                Map<String, String> data = new HashMap<>();
-                                data.put("type", ((AccountType) type.getSelectedItem()).name());
+                                User u = new User(mAuth.getCurrentUser().getEmail(), -1,((AccountType) type.getSelectedItem()).name());
                                 db.collection("users").document(mAuth.getCurrentUser().getUid())
-                                        .set(data)
+                                        .set(u)
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void aVoid) {
