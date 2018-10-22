@@ -6,73 +6,83 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/location_name"
+        android:id="@+id/item_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Location Name"
-        android:textAppearance="?attr/textAppearanceListItem" />
+        android:text="Item Name"/>
+        <!--android:textAppearance="" -->
 
     <TextView
-        android:id="@+id/location_type"
+        android:id="@+id/item_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Location Type"
-        android:textAppearance="?attr/textAppearanceListItem" />
+        android:text="Location"/>
+        <!--android:textAppearance="" -->
 
     <TextView
-        android:id="@+id/location_longitude"
+        android:id="@+id/item_short"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Location Longitude"
-        android:textAppearance="?attr/textAppearanceListItem" />
+        android:text="Item Short Description"/>
+        <!--android:textAppearance="" -->
 
     <TextView
-        android:id="@+id/location_latitude"
+        android:id="@+id/item_full"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Location Latitude"
-        android:textAppearance="?attr/textAppearanceListItem" />
+        android:text="Item Full Description"/>
+        <!--android:textAppearance="" -->
 
     <TextView
-        android:id="@+id/location_address"
+        android:id="@+id/item_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Location Address"
-        android:textAppearance="?attr/textAppearanceListItem" />
+        android:text="Item Value"/>
+        <!--android:textAppearance=""-->
 
     <TextView
-        android:id="@+id/location_phone_number"
+        android:id="@+id/item_category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Location Phone Number"
-        android:textAppearance="?attr/textAppearanceListItem" />
+        android:text="Item Category"/>
+        <!--android:textAppearance="" -->
+
+
+    <TextView
+        android:id="@+id/item_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Item Time Stamp"/>
+        <!--android:textAppearance="" -->
+
 
     <Button
-        android:id="@+id/location_edit_button"
+        android:id="@+id/item_edit_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Edit Location"
-        android:onClick="onEditLocationPressed"/>
+        android:text="Edit"
+        android:onClick="onEditItemPressed" />
 
     <Button
-        android:id="@+id/inventory_view_button"
+        android:id="@+id/item_delete_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="View Inventory"
-        android:onClick="onViewInventoryPressed"/>
+        android:text="Delete Item"
+        android:onClick="onDeleteItemPressed" />
 
     <Button
-        android:id="@+id/location_back_button"
+        android:id="@+id/item_back_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Back"
-        android:onClick="onBackPressed">
+        android:onClick="onBackItemPressed">
 
     </Button>
 </LinearLayout>
