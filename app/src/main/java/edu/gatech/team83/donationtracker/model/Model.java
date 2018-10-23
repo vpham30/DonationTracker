@@ -105,6 +105,18 @@ public class Model {
         });
     }
 
+    public void editDonation(Location loc, Item toedit, Item newItem) {
+        ArrayList<Item> newinv = loc.getInventory();
+        newinv.remove(toedit);
+        newinv.add(newItem);
+        db.collection("locations").document(loc.getName() + "#" + loc.getId()).update("inventory", newinv).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                updateFromDatabase();
+            }
+        });
+    }
+
     public String getType() {
         return usertype;
     }
