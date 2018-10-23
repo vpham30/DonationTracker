@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import edu.gatech.team83.donationtracker.model.Item;
+import edu.gatech.team83.donationtracker.model.Location;
 import edu.gatech.team83.donationtracker.model.Model;
 import edu.gatech.team83.donationtracker.R;
 
@@ -19,15 +20,17 @@ public class ItemDetailActivity extends AppCompatActivity {
     private TextView shortDesc;
     private TextView longDesc;
     private TextView category;
-    private TextView location;
+    private TextView item_location;
     private Item item;
     private Model model;
+    private Location location;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_detail);
 
-        item = (Item) getIntent().getParcelableExtra("Item");
+        item = getIntent().getParcelableExtra("Item");
+        location = getIntent().getParcelableExtra("Location");
         model = Model.getInstance();
 
         name = findViewById(R.id.item_name);
@@ -36,7 +39,7 @@ public class ItemDetailActivity extends AppCompatActivity {
         shortDesc = findViewById(R.id.item_short);
         longDesc = findViewById(R.id.item_full);
         category = findViewById(R.id.item_category);
-        location = findViewById(R.id.item_location);
+        item_location = findViewById(R.id.item_location);
 
 
         name.setText(item.getName());
@@ -45,12 +48,14 @@ public class ItemDetailActivity extends AppCompatActivity {
         shortDesc.setText(item.getShortDesc());
         longDesc.setText(item.getLongDesc());
         category.setText(item.getCategory());
+        item_location.setText(location.getName());
 
     }
 
     public void onBackPressed(View v) {
         Context context = v.getContext();
         Intent intent = new Intent(context, ItemRecyclerActivity.class);
+        intent.putExtra("Location", location);
         startActivity(intent);
     }
 
@@ -59,6 +64,7 @@ public class ItemDetailActivity extends AppCompatActivity {
             Context context = v.getContext();
             Intent intent = new Intent(context, ItemEditActivity.class);
             intent.putExtra("Item", item);
+            intent.putExtra("Location", location);
             startActivity(intent);
         } else {
             Snackbar failed = Snackbar.make(v, "You are not an admin", Snackbar.LENGTH_SHORT);
