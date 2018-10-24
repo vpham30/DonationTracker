@@ -93,7 +93,7 @@ public class ItemEditActivity extends AppCompatActivity {
             intent.putExtra("Item", item);
             startActivity(intent);
         } else {
-            Intent intent = new Intent(this, ItemRecyclerActivity.class);
+            Intent intent = new Intent(this, InventoryRecyclerActivity.class);
             intent.putExtra("Location", location);
             startActivity(intent);
         }

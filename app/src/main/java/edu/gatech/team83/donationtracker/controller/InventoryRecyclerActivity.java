@@ -24,7 +24,7 @@ public class InventoryRecyclerActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.location_list);
+        setContentView(R.layout.inventory_list);
         if(getIntent().hasExtra("Location")) {
             loc = (Location) getIntent().getParcelableExtra("Location");
             inv = loc.getInventory();
