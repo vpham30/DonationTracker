@@ -34,10 +34,13 @@
             android:label="LocationEdit">
         </activity>
         <activity android:name=".controller.ItemEditActivity"
-            android:label="LocationEdit">
+            android:label="ItemEdit">
         </activity>
         <activity android:name=".controller.ItemDetailActivity"
-            android:label="LocationEdit">
+            android:label="ItemDetail">
+        </activity>
+        <activity android:name=".controller.InventoryRecyclerActivity"
+            android:label="InventoryRecycler">
         </activity>
     </application>
 </manifest>
