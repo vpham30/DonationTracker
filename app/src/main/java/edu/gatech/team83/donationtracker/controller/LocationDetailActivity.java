@@ -63,4 +63,11 @@ public class LocationDetailActivity extends AppCompatActivity {
             failed.show();
         }
     }
+
+    public void onViewInventoryPressed(View v) {
+        Context context = v.getContext();
+        Intent intent = new Intent(context, InventoryRecyclerActivity.class);
+        intent.putExtra("Location", location);
+        startActivity(intent);
+    }
 }
