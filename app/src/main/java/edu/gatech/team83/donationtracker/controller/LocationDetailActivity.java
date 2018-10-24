@@ -63,4 +63,8 @@ public class LocationDetailActivity extends AppCompatActivity {
             failed.show();
         }
     }
+
+    public void onViewInventoryPressed(View v) {
+        
+    }
 }
