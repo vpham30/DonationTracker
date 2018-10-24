@@ -95,9 +95,10 @@ public class Model {
     }
 
     public void addDonation(Location loc, Item dono) {
-        ArrayList<Item> newinv = loc.getInventory();
-        newinv.add(dono);
-        db.collection("locations").document(loc.getName() + "#" + loc.getId()).update("inventory", newinv).addOnCompleteListener(new OnCompleteListener<Void>() {
+        ArrayList<Item> inv = loc.getInventory();
+        inv.add(dono);
+        loc.setInventory(inv);
+        db.collection("locations").document(loc.getName() + "#" + loc.getId()).set(loc).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 updateFromDatabase();
@@ -106,10 +107,11 @@ public class Model {
     }
 
     public void editDonation(Location loc, Item toedit, Item newItem) {
-        ArrayList<Item> newinv = loc.getInventory();
-        newinv.remove(toedit);
-        newinv.add(newItem);
-        db.collection("locations").document(loc.getName() + "#" + loc.getId()).update("inventory", newinv).addOnCompleteListener(new OnCompleteListener<Void>() {
+        ArrayList<Item> inv = loc.getInventory();
+        inv.remove(toedit);
+        inv.add(newItem);
+        loc.setInventory(inv);
+        db.collection("locations").document(loc.getName() + "#" + loc.getId()).set(loc).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 updateFromDatabase();

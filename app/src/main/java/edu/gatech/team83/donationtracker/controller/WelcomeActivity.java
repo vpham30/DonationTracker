@@ -40,7 +40,6 @@ public class WelcomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-
         db = FirebaseFirestore.getInstance();
     }
         
@@ -72,10 +71,11 @@ public class WelcomeActivity extends AppCompatActivity {
                             try {
                                 InputStream is = getAssets().open("LocationData.csv");
                                 in = new InputStreamReader(is);
-                                ArrayList<Item> inv = new ArrayList<>();
+                                ArrayList<Item> inv;
                                 Iterable<CSVRecord> locations = CSVFormat.EXCEL.withHeader().parse(in);
                                 for (CSVRecord location : locations) {
                                     Location loc = new Location();
+                                    inv = new ArrayList<>();
                                     loc.setId(++num);
                                     loc.setName(location.get("Name"));
                                     loc.setType(location.get("Type"));
@@ -83,9 +83,9 @@ public class WelcomeActivity extends AppCompatActivity {
                                     loc.setLatitude(location.get("Latitude"));
                                     loc.setAddress(location.get("Street Address"));
                                     loc.setPhonenumber(location.get("Phone"));
-                                    inv.add(new Item("test1", "test","test","test","test","test"));
-                                    inv.add(new Item("test2", "test","test","test","test","test"));
-                                    inv.add(new Item("test3", "test","test","test","test","test"));
+                                    inv.add(new Item("test1", "timestamp","value","short description","long description","category"));
+                                    inv.add(new Item("test2", "timestamp","value","short description","long description","category"));
+                                    inv.add(new Item("test3", "timestamp","value","short description","long description","category"));
                                     loc.setInventory(inv);
                                     db.collection("locations").document(location.get("Name") + "#" + num).set(loc);
                                 }

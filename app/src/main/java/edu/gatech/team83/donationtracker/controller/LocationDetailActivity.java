@@ -49,6 +49,7 @@ public class LocationDetailActivity extends AppCompatActivity {
     public void onBackPressed(View v) {
         Context context = v.getContext();
         Intent intent = new Intent(context, LocationRecyclerActivity.class);
+        intent.putExtra("Location", location);
         startActivity(intent);
     }
 
@@ -65,6 +66,8 @@ public class LocationDetailActivity extends AppCompatActivity {
     }
 
     public void onViewInventoryPressed(View v) {
-        
+        Intent intent = new Intent(this, InventoryRecyclerActivity.class);
+        intent.putExtra("Location", location);
+        startActivity(intent);
     }
 }

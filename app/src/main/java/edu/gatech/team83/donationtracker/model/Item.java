@@ -109,4 +109,10 @@ public class Item implements Parcelable{
             return new Item[size];
         }
     };
+
+    @Override
+    public boolean equals(Object o) {
+        Item item = (Item) o;
+        return (name + time).equals(item.name + item.time);
+    }
 }

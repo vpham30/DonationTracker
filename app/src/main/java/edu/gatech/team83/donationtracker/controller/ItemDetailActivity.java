@@ -52,7 +52,7 @@ public class ItemDetailActivity extends AppCompatActivity {
 
     }
 
-    public void onBackPressed(View v) {
+    public void onBackItemPressed(View v) {
         Context context = v.getContext();
         Intent intent = new Intent(context, InventoryRecyclerActivity.class);
         intent.putExtra("Location", location);

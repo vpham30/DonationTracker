@@ -77,7 +77,6 @@ public class LocationRecyclerActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(LocationViewHolder holder, final int position) {
             holder.locName.setText(locList.get(position).getName());
-            Log.e("test", "got here");
             //Listener for when you click a item in the recycler
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
