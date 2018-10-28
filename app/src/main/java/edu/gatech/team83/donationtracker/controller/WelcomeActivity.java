@@ -83,9 +83,9 @@ public class WelcomeActivity extends AppCompatActivity {
                                     loc.setLatitude(location.get("Latitude"));
                                     loc.setAddress(location.get("Street Address"));
                                     loc.setPhonenumber(location.get("Phone"));
-                                    inv.add(new Item("test1", "timestamp","value","short description","long description","category"));
-                                    inv.add(new Item("test2", "timestamp","value","short description","long description","category"));
-                                    inv.add(new Item("test3", "timestamp","value","short description","long description","category"));
+                                    inv.add(new Item("test1", "timestamp","value","short description","long description","category", loc.getName()));
+                                    inv.add(new Item("test2", "timestamp","value","short description","long description","category", loc.getName()));
+                                    inv.add(new Item("test3", "timestamp","value","short description","long description","category", loc.getName()));
                                     loc.setInventory(inv);
                                     db.collection("locations").document(location.get("Name") + "#" + num).set(loc);
                                 }

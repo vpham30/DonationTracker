@@ -11,7 +11,7 @@ public class Item implements Parcelable{
     private String shortDesc;
     private String longDesc;
     private String category;
-
+    private String locName;
 
     public String getName() {
         return name;
@@ -61,17 +61,27 @@ public class Item implements Parcelable{
         this.category = category;
     }
 
-    public Item(String name, String time, String value, String shortDesc, String longDesc, String category) {
+
+    public String getLocName() {
+        return locName;
+    }
+
+    public void setLocName(String locName) {
+        this.locName = locName;
+    }
+
+    public Item(String name, String time, String value, String shortDesc, String longDesc, String category, String locName) {
         this.name = name;
         this.time = time;
         this.value = value;
         this.shortDesc = shortDesc;
         this.longDesc = longDesc;
         this.category = category;
+        this.locName = locName;
     }
 
     public Item() {
-        this("","","","","","");
+        this("","","","","","", "");
     }
 
     public Item(Parcel in) {
