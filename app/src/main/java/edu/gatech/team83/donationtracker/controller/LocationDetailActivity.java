@@ -66,8 +66,6 @@ public class LocationDetailActivity extends AppCompatActivity {
     }
 
     public void onViewInventoryPressed(View v) {
-        Intent intent = new Intent(this, InventoryRecyclerActivity.class);
-
         Context context = v.getContext();
         Intent intent = new Intent(context, InventoryRecyclerActivity.class);
 
