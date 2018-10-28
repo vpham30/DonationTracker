@@ -18,6 +18,7 @@ public class Model {
 
     private static FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private static ArrayList<Location> locations;
+    private static ArrayList<Item> allItems;
     private static FirebaseUser currentuser;
     private static long count;
     private static String usertype;
@@ -30,6 +31,8 @@ public class Model {
         currentuser = null;
         locations = new ArrayList<>();
         locations.add(new Location());
+        allItems = new ArrayList<>();
+        allItems.add(new Item());
     }
 
     public ArrayList<Location> getLocations() {
@@ -45,6 +48,10 @@ public class Model {
                 }
             }
         });
+        allItems = new ArrayList<>();
+        for (Location loc : locations) {
+            allItems.addAll(loc.getInventory());
+        }
         db.collection("counters").document("loccount").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -66,7 +73,6 @@ public class Model {
             }
         });
     }
-
 
     public long getCount() {
         return count;
@@ -125,6 +131,26 @@ public class Model {
 
     public void signout() {
         mAuth.signOut();
+    }
+
+    /**
+     * main search method, only use this directly if the user is searching for a name and category in a specific location
+     *
+     * @param searchField the String typed into the search bar ("" if all items)
+     * @param category the category you are searching for ("" if all categories)
+     * @param loc the location you are searching in (null if all locations)
+     * @return an arraylist containing all items matching the search query
+     */
+    public ArrayList<Item> search(String searchField, String category, Location loc) {
+        ArrayList<Item> toSearch;
+        ArrayList<Item> ret = new ArrayList<>();
+        toSearch = loc == null ? allItems : loc.getInventory();
+        for (Item i: toSearch) {
+            if (i.getName().contains(searchField) && i.getCategory().equals(category)) {
+                ret.add(i);
+            }
+        }
+        return ret;
     }
 
 }
