@@ -153,4 +153,8 @@ public class Model {
         return ret;
     }
 
+    public ArrayList<Item> getAllItems() {
+        return allItems;
+    }
+
 }
