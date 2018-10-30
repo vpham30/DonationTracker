@@ -153,6 +153,42 @@ public class Model {
         return ret;
     }
 
+    /**
+     * Item search method
+     *
+     * @param searchField the String typed into the search bar ("" if all items)
+     * @param category the category you are searching for ("" if all categories)
+     * @param loc the location you are searching in (null if all locations)
+     * @return an arraylist containing all items matching the search query
+     */
+    public ArrayList<Item> itemSearch(String searchField, String category, Location loc) {
+        ArrayList<Item> toSearch;
+        ArrayList<Item> ret = new ArrayList<>();
+        toSearch = loc == null ? allItems : loc.getInventory();
+        for (Item i: toSearch) {
+            if (i.getName().toLowerCase().contains(searchField.toLowerCase()) && i.getCategory().toLowerCase().equals(category.toLowerCase())) {
+                ret.add(i);
+            }
+        }
+        return ret;
+    }
+
+    /**
+     * Location search method
+     *
+     * @param searchField the String typed into the search bar ("" if all items)
+     * @return an arraylist containing all items matching the search query
+     */
+    public ArrayList<Location> locSearch(String searchField) {
+        ArrayList<Location> ret = new ArrayList<>();
+        for (Location l: locations) {
+            if (l.getName().toLowerCase().contains(searchField.toLowerCase())) {
+                ret.add(l);
+            }
+        }
+        return ret;
+    }
+
     public ArrayList<Item> getAllItems() {
         return allItems;
     }
