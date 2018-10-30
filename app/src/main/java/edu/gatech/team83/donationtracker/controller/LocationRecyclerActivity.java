@@ -81,15 +81,19 @@ public class LocationRecyclerActivity extends AppCompatActivity {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //takes us to the Edit page with the Loc's info
-                    Context context = view.getContext();
-                    //this needs some work
-                    //TODO verify class name
-                    Intent intent = new Intent(context, LocationDetailActivity.class);
-                    //sends the id of the location
-                    //TODO verify works
-                    intent.putExtra("Location", locList.get(position));
-                    startActivity(intent);
+                    if (getIntent().hasExtra("Act") && getIntent().getStringExtra("Act").equals("SearchActivity")) {
+                        //TODO list info goes here
+                        Intent intent = new Intent(view.getContext(), SearchActivity.class);
+                        intent.putExtra("Act", "LocationRecyclerActivity");
+                        startActivity(intent);
+                    } else {
+                        //takes us to the Edit page with the Loc's info
+                        Context context = view.getContext();
+                        Intent intent = new Intent(context, LocationDetailActivity.class);
+                        //sends the id of the location
+                        intent.putExtra("Location", locList.get(position));
+                        startActivity(intent);
+                    }
                 }
             });
         }

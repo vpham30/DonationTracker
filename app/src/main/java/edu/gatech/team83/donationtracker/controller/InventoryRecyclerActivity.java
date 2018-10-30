@@ -40,7 +40,13 @@ public class InventoryRecyclerActivity extends AppCompatActivity {
     }
 
     public void onBackToInventoryPressed(View v) {
-        startActivity(new Intent(v.getContext(), LocationRecyclerActivity.class));
+        if (getIntent().hasExtra("Act") && getIntent().getStringExtra("Act").equals("SearchActivity")) {
+            //TODO put Lists here
+            Intent intent = new Intent(v.getContext(), SearchActivity.class);
+            startActivity(intent);
+        } else {
+            startActivity(new Intent(v.getContext(), LocationRecyclerActivity.class));
+        }
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {

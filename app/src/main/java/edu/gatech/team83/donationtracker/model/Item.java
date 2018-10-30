@@ -13,6 +13,8 @@ public class Item implements Parcelable{
     private String category;
     private String locName;
 
+    public final static String[] categories = {"Clothing", "Hat", "Kitchen", "Electronics", "Household", "Other"};
+
     public String getName() {
         return name;
     }
