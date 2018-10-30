@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this, "Success", Toast.LENGTH_SHORT).show();
                             model.updateFromDatabase();
                             model.setCurrentuser(mAuth.getCurrentUser());
-                            Intent intent = new Intent(LoginActivity.this, LocationRecyclerActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, AppLandingActivity.class);
                             startActivity(intent);
                         } else {
                             Toast.makeText(LoginActivity.this, "" + task.getException(), Toast.LENGTH_SHORT).show();
