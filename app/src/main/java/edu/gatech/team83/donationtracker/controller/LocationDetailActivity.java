@@ -27,7 +27,7 @@ public class LocationDetailActivity extends AppCompatActivity {
         setContentView(R.layout.location_detail);
 
 
-        location = (Location) getIntent().getParcelableExtra("Location");
+        location = getIntent().getParcelableExtra("Location");
         model = Model.getInstance();
 
 

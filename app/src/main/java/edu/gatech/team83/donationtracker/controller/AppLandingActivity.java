@@ -25,7 +25,6 @@ public class AppLandingActivity extends AppCompatActivity {
 
     public void onViewItemsPressed (View view) {
         Intent intent = new Intent(this, InventoryRecyclerActivity.class);
-        intent.putParcelableArrayListExtra("Items", model.getAllItems());
         startActivity(intent);
     }
 

@@ -7,28 +7,38 @@ import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.gatech.team83.donationtracker.R;
 import edu.gatech.team83.donationtracker.model.Item;
 import edu.gatech.team83.donationtracker.model.Location;
+import edu.gatech.team83.donationtracker.model.Model;
 
 public class InventoryRecyclerActivity extends AppCompatActivity {
 
     private Location loc;
-    private List<Item> inv;
+    private ArrayList<Item> inv;
+    private Model model;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.inventory_list);
-        if(getIntent().hasExtra("Location")) {
-            loc = (Location) getIntent().getParcelableExtra("Location");
+        model = Model.getInstance();
+        if (getIntent().hasExtra("Act") && getIntent().getStringExtra("Act").equals("SearchActivity")) {
+            loc = getIntent().getParcelableExtra("Location");
+            inv = getIntent().getParcelableArrayListExtra("Inventory");
+        } else if(getIntent().hasExtra("Location")) {
+            loc = getIntent().getParcelableExtra("Location");
             inv = loc.getInventory();
+        } else {
+            inv = model.getAllItems();
         }
         View recyclerView = findViewById(R.id.recycler_view);
         setupRecyclerView((RecyclerView) recyclerView);
@@ -36,19 +46,23 @@ public class InventoryRecyclerActivity extends AppCompatActivity {
 
     public void onAddItemPressed(View v) {
         Intent intent = new Intent(v.getContext(), ItemEditActivity.class);
+        if (getIntent().hasExtra("Act") && getIntent().getStringExtra("Act").equals("SearchActivity")) {
+            return;
+        }
         intent.putExtra("Location", loc);
         startActivity(intent);
     }
 
     public void onBackToInventoryPressed(View v) {
-        if (getIntent().hasExtra("Act") && getIntent().getStringExtra("Act").equals("SearchActivity")) {
-            loc = (Location) getIntent().getParcelableExtra("Location");
-            inv = loc.getInventory();
+        if (getIntent().hasExtra("Act") && getIntent().getStringExtra("Act").equals("SearchActivity")) { ;
             Intent intent = new Intent(v.getContext(), SearchActivity.class);
-            intent.putExtra("Inventory", (Parcelable) inv);
+            intent.putExtra("Location", loc);
+            intent.putExtra("Act", "InventoryRecyclerActivity");
             startActivity(intent);
-        } else {
+        } else if(getIntent().hasExtra("Location")) {
             startActivity(new Intent(v.getContext(), LocationRecyclerActivity.class));
+        } else {
+            startActivity(new Intent(v.getContext(), AppLandingActivity.class));
         }
     }
 
@@ -58,10 +72,10 @@ public class InventoryRecyclerActivity extends AppCompatActivity {
 
     public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.InventoryViewHolder> {
 
-        private List<Item> inv;
+        private ArrayList<Item> inv;
         private Location loc;
 
-        public InventoryAdapter(List<Item> inv, Location loc) {
+        public InventoryAdapter(ArrayList<Item> inv, Location loc) {
             this.inv = inv;
             this.loc = loc;
         }
@@ -86,7 +100,14 @@ public class InventoryRecyclerActivity extends AppCompatActivity {
                     Intent intent = new Intent(context, ItemDetailActivity.class);
                     //sends the id of the location
                     intent.putExtra("Item", inv.get(position));
-                    intent.putExtra("Location", loc);
+                    if (getIntent().hasExtra("Location")) {
+                        loc = getIntent().getParcelableExtra("Location");
+                        intent.putExtra("Location", loc);
+                    }
+                    if (getIntent().hasExtra("Act") && getIntent().getStringExtra("Act").equals("SearchActivity")) {
+                        intent.putExtra("Act", "SearchActivity");
+                        intent.putParcelableArrayListExtra("Inventory", inv);
+                    }
                     startActivity(intent);
                 }
             });

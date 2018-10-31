@@ -25,9 +25,9 @@ public class SearchActivity extends AppCompatActivity {
     private Spinner category;
     private EditText locField;
     private Model model = Model.getInstance();
-    private List<Item> inv;
-    private List<Location> locs;
-    private List<String> cats;
+    private ArrayList<Item> inv;
+    private Location loc;
+    private ArrayList<String> cats;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,22 +37,16 @@ public class SearchActivity extends AppCompatActivity {
         category = findViewById(R.id.LocSpinner);
         locField = findViewById(R.id.editText);
 
-        cats = Arrays.asList(Item.categories);
+        cats = new ArrayList<>(Arrays.asList(Item.categories));
         cats.add(0, "");
         ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, cats);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         category.setAdapter(adapter);
 
-        if (getIntent().hasExtra("Act") && getIntent().getStringExtra("Act").equals("InventoryRecyclerActivity")) {
-            inv = getIntent().getParcelableArrayListExtra("Inventory");
-            locs = getIntent().getParcelableArrayListExtra("Locations");
-            itemField.setText(inv.get(0).getName());
-            category.setSelection(cats.indexOf(inv.get(0).getCategory()));
-            locField.setText(inv.get(0).getLocName());
-        } else if (getIntent().hasExtra("Act") && getIntent().getStringExtra("Act").equals("LocationRecyclerActivity")) {
-            locs = getIntent().getParcelableArrayListExtra("Locations");
+        if (getIntent().hasExtra("Act") && getIntent().getStringExtra("Act").equals("LocationRecyclerActivity")) {
+            loc = getIntent().getParcelableExtra("Location");
             itemField.setText("");
-            locField.setText(inv.get(0).getLocName());
+            locField.setText(loc.getName());
         } else {
             itemField.setText("");
             locField.setText("");
@@ -67,12 +61,12 @@ public class SearchActivity extends AppCompatActivity {
 
     public void onSearchPressed(View v) {
         Intent intent = new Intent(this, InventoryRecyclerActivity.class);
-        inv = model.itemSearch(itemField.getText().toString(), category.getSelectedItem().toString(), locs.get(0));
+        inv = model.itemSearch(itemField.getText().toString(), category.getSelectedItem().toString(), loc);
         if (inv.size() == 0) {
             Snackbar failed = Snackbar.make(v, "No matches!", Snackbar.LENGTH_SHORT);
             failed.show();
         } else {
-            intent.putParcelableArrayListExtra("Inventory", (ArrayList<? extends Parcelable>) inv);
+            intent.putParcelableArrayListExtra("Inventory", inv);
             intent.putExtra("Act", "SearchActivity");
             startActivity(intent);
         }
@@ -80,12 +74,12 @@ public class SearchActivity extends AppCompatActivity {
 
     public void onSearchLocPressed(View v) {
         Intent intent = new Intent(this, LocationRecyclerActivity.class);
-        locs = model.locSearch(locField.getText().toString());
+        ArrayList<Location> locs = model.locSearch(locField.getText().toString());
         if (locs.size() == 0) {
             Snackbar failed = Snackbar.make(v, "No matches!", Snackbar.LENGTH_SHORT);
             failed.show();
         } else {
-            intent.putParcelableArrayListExtra("Locations", (ArrayList<? extends Parcelable>) locs);
+            intent.putParcelableArrayListExtra("Locations",  locs);
             intent.putExtra("Act", "SearchActivity");
             startActivity(intent);
         }
