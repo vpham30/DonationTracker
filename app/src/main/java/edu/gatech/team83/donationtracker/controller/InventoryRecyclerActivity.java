@@ -3,6 +3,7 @@ package edu.gatech.team83.donationtracker.controller;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -41,8 +42,10 @@ public class InventoryRecyclerActivity extends AppCompatActivity {
 
     public void onBackToInventoryPressed(View v) {
         if (getIntent().hasExtra("Act") && getIntent().getStringExtra("Act").equals("SearchActivity")) {
-            //TODO put Lists here
+            loc = (Location) getIntent().getParcelableExtra("Location");
+            inv = loc.getInventory();
             Intent intent = new Intent(v.getContext(), SearchActivity.class);
+            intent.putExtra("Inventory", (Parcelable) inv);
             startActivity(intent);
         } else {
             startActivity(new Intent(v.getContext(), LocationRecyclerActivity.class));

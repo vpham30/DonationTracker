@@ -3,6 +3,7 @@ package edu.gatech.team83.donationtracker.controller;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import edu.gatech.team83.donationtracker.R;
+import edu.gatech.team83.donationtracker.model.Item;
 import edu.gatech.team83.donationtracker.model.Location;
 import edu.gatech.team83.donationtracker.model.Model;
 
@@ -82,9 +84,10 @@ public class LocationRecyclerActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if (getIntent().hasExtra("Act") && getIntent().getStringExtra("Act").equals("SearchActivity")) {
-                        //TODO list info goes here
+                        Location location = locList.get(position);
+                        List<Item> inventory = location.getInventory();
                         Intent intent = new Intent(view.getContext(), SearchActivity.class);
-                        intent.putExtra("Act", "LocationRecyclerActivity");
+                        intent.putExtra("Inventory", (Parcelable) inventory);
                         startActivity(intent);
                     } else {
                         //takes us to the Edit page with the Loc's info
