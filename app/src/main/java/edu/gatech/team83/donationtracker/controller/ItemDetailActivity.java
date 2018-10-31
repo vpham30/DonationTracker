@@ -30,7 +30,6 @@ public class ItemDetailActivity extends AppCompatActivity {
         setContentView(R.layout.item_detail);
 
         item = getIntent().getParcelableExtra("Item");
-        location = getIntent().getParcelableExtra("Location");
         model = Model.getInstance();
 
         name = findViewById(R.id.item_name);
@@ -48,14 +47,21 @@ public class ItemDetailActivity extends AppCompatActivity {
         shortDesc.setText(item.getShortDesc());
         longDesc.setText(item.getLongDesc());
         category.setText(item.getCategory());
-        item_location.setText(location.getName());
+        item_location.setText(item.getLocName());
 
     }
 
     public void onBackItemPressed(View v) {
         Context context = v.getContext();
         Intent intent = new Intent(context, InventoryRecyclerActivity.class);
-        intent.putExtra("Location", location);
+        if (getIntent().hasExtra("Location")) {
+            location = getIntent().getParcelableExtra("Location");
+            intent.putExtra("Location", location);
+        }
+        if (getIntent().hasExtra("Act") && getIntent().getStringExtra("Act").equals("SearchActivity")) {
+            intent.putExtra("Act", "SearchActivity");
+            intent.putExtra("Inventory", getIntent().getParcelableArrayListExtra("Inventory"));
+        }
         startActivity(intent);
     }
 
@@ -65,6 +71,9 @@ public class ItemDetailActivity extends AppCompatActivity {
             Intent intent = new Intent(context, ItemEditActivity.class);
             intent.putExtra("Item", item);
             intent.putExtra("Location", location);
+            if (getIntent().hasExtra("Act") && getIntent().getStringExtra("Act").equals("SearchActivity")) {
+                intent.putExtra("Act", "SearchActivity");
+            }
             startActivity(intent);
         } else {
             Snackbar failed = Snackbar.make(v, "You are not an admin", Snackbar.LENGTH_SHORT);

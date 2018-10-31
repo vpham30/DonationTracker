@@ -49,15 +49,22 @@ public class LocationRecyclerActivity extends AppCompatActivity {
         }
     }
 
-    public void onLogoutPressed(View v) {
+    public void onBackPressed(View v) {
         Context context = v.getContext();
+        if (getIntent().hasExtra("Act") && getIntent().getStringExtra("Act").equals("SearchActivity")) {
+            Intent intent = new Intent(context, SearchActivity.class);
+        }
         Intent intent = new Intent(context, WelcomeActivity.class);
-        model.signout();
         startActivity(intent);
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        List<Location> list = model.getLocations();
+        List<Location> list;
+        if (getIntent().hasExtra("Locations")) {
+            list = getIntent().getParcelableArrayListExtra("Locations");
+        } else {
+            list = model.getLocations();
+        }
         recyclerView.setAdapter(new LocationAdapter(list));
     }
 
@@ -85,9 +92,9 @@ public class LocationRecyclerActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     if (getIntent().hasExtra("Act") && getIntent().getStringExtra("Act").equals("SearchActivity")) {
                         Location location = locList.get(position);
-                        List<Item> inventory = location.getInventory();
                         Intent intent = new Intent(view.getContext(), SearchActivity.class);
-                        intent.putExtra("Inventory", (Parcelable) inventory);
+                        intent.putExtra("Location", location);
+                        intent.putExtra("Act", "LocationRecyclerActivity");
                         startActivity(intent);
                     } else {
                         //takes us to the Edit page with the Loc's info

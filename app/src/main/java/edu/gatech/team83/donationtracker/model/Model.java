@@ -166,7 +166,7 @@ public class Model {
         ArrayList<Item> ret = new ArrayList<>();
         toSearch = loc == null ? allItems : loc.getInventory();
         for (Item i: toSearch) {
-            if (i.getName().toLowerCase().contains(searchField.toLowerCase()) && i.getCategory().toLowerCase().equals(category.toLowerCase())) {
+            if (i.getName().toLowerCase().contains(searchField.toLowerCase()) && i.getCategory().toLowerCase().contains(category.toLowerCase())) {
                 ret.add(i);
             }
         }

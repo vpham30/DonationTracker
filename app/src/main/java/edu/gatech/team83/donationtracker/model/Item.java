@@ -93,6 +93,7 @@ public class Item implements Parcelable{
         this.shortDesc = in.readString();
         this.longDesc = in.readString();
         this.category = in.readString();
+        this.locName = in.readString();
     }
 
     @Override
@@ -108,6 +109,7 @@ public class Item implements Parcelable{
         dest.writeString(shortDesc);
         dest.writeString(longDesc);
         dest.writeString(category);
+        dest.writeString(locName);
     }
 
     public static final Parcelable.Creator<Item> CREATOR

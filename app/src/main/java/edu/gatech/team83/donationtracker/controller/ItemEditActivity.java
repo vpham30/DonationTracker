@@ -91,6 +91,9 @@ public class ItemEditActivity extends AppCompatActivity {
             Intent intent = new Intent(this, ItemDetailActivity.class);
             intent.putExtra("Location", location);
             intent.putExtra("Item", item);
+            if (getIntent().hasExtra("Act") && getIntent().getStringExtra("Act").equals("SearchActivity")) {
+                intent.putExtra("Act", "SearchActivity");
+            }
             startActivity(intent);
         } else {
             Intent intent = new Intent(this, InventoryRecyclerActivity.class);

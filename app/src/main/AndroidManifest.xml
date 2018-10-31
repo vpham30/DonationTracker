@@ -42,5 +42,11 @@
         <activity android:name=".controller.InventoryRecyclerActivity"
             android:label="InventoryRecycler">
         </activity>
+        <activity android:name=".controller.AppLandingActivity"
+            android:label="AppLanding">
+        </activity>
+        <activity android:name=".controller.SearchActivity"
+            android:label="Search">
+        </activity>
     </application>
 </manifest>
