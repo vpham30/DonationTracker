@@ -23,17 +23,6 @@
         app:layout_constraintVertical_bias="0.378" />
 
     <Button
-        android:id="@+id/back_search_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginStart="16dp"
-        android:onClick="onBackSearchButton"
-        android:text="Back"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
         android:id="@+id/search_loc_button"
         android:layout_width="88dp"
         android:layout_height="wrap_content"
@@ -138,4 +127,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.028"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/back_search_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:layout_marginEnd="328dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="90dp"
+        android:clickable="true"
+        android:onClick="onBackSearchButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:srcCompat="@android:drawable/ic_menu_revert" />
 </android.support.constraint.ConstraintLayout>

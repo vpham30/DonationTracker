@@ -12,7 +12,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="80dp"
-        app:layoutManager="LinearLayoutManager"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
         tools:context="cs2340.gatech.edu.lab3.controllers.CourseListActivity"
         tools:listitem="@layout/location_list_item">
 
@@ -29,14 +29,16 @@
         android:id="@+id/add_location_button"
         android:onClick="onAddLocationPressed"/>
 
-    <Button
-        android:id="@+id/log_out_button"
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="25dp"
-        android:layout_marginStart="30dp"
+        android:layout_alignBottom="@+id/add_location_button"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="39dp"
+        android:clickable="true"
         android:onClick="onBackPressed"
-        android:text="Back" />
+        app:srcCompat="@android:drawable/ic_menu_revert" />
 
 </RelativeLayout>

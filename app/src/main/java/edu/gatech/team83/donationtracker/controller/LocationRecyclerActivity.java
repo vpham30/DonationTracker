@@ -54,7 +54,7 @@ public class LocationRecyclerActivity extends AppCompatActivity {
         if (getIntent().hasExtra("Act") && getIntent().getStringExtra("Act").equals("SearchActivity")) {
             Intent intent = new Intent(context, SearchActivity.class);
         }
-        Intent intent = new Intent(context, WelcomeActivity.class);
+        Intent intent = new Intent(context, AppLandingActivity.class);
         startActivity(intent);
     }
 
