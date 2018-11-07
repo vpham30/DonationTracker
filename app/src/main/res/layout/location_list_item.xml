@@ -8,9 +8,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Location Name"
+        android:text="@string/locName"
         android:id="@+id/location_name_test"
         android:layout_centerVertical="true"
-        android:textSize="18dp"/>
+        android:textSize="18sp"/>
 
 </RelativeLayout>

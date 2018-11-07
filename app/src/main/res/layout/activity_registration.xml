@@ -14,7 +14,7 @@
         android:layout_marginStart="52dp"
         android:layout_marginTop="76dp"
         android:layout_marginBottom="74dp"
-        android:text="Username"
+        android:text="@string/username"
         app:layout_constraintBottom_toTopOf="@+id/textView6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,7 +24,7 @@
         android:layout_width="85dp"
         android:layout_height="33dp"
         android:layout_marginBottom="17dp"
-        android:text="Password"
+        android:text="@string/password"
         app:layout_constraintBottom_toTopOf="@+id/password"
         app:layout_constraintStart_toStartOf="@+id/username" />
 
@@ -32,7 +32,7 @@
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="25dp"
-        android:text="Confirm Password"
+        android:text="@string/confirm"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/password"
         app:layout_constraintTop_toTopOf="parent" />
@@ -43,6 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:ems="10"
+        android:hint="@string/password"
         android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/textView7"
         app:layout_constraintStart_toStartOf="@+id/textView6" />
@@ -54,6 +55,7 @@
         android:layout_marginTop="215dp"
         android:layout_marginBottom="215dp"
         android:ems="10"
+        android:hint="@string/confirm"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView7"
@@ -66,6 +68,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginBottom="12dp"
         android:ems="10"
+        android:hint="@string/username"
         android:inputType="text"
         app:layout_constraintBottom_toTopOf="@+id/textView6"
         app:layout_constraintStart_toStartOf="@+id/textView5"
@@ -87,7 +90,7 @@
         android:layout_marginStart="52dp"
         android:layout_marginBottom="47dp"
         android:onClick="onCancelPressed"
-        android:text="Cancel"
+        android:text="@string/cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -98,7 +101,7 @@
         android:layout_marginEnd="66dp"
         android:layout_marginBottom="48dp"
         android:onClick="onRegisterPressed"
-        android:text="Register"
+        android:text="@string/register"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

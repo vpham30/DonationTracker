@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/location_edit_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -16,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/name_input"
         android:layout_alignStart="@+id/name_input"
-        android:text="Location Name" />
+        android:text="@string/locName" />
 
 
     <EditText
@@ -27,7 +26,9 @@
         android:layout_centerHorizontal="true"
         android:ems="10"
         android:inputType="text"
-        android:text="Name" />
+        android:labelFor="@+id/name_input"
+        android:hint="@string/locName"
+        android:text="@string/locName" />
 
     <TextView
         android:id="@+id/location_type_text"
@@ -35,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/location_type_input"
         android:layout_alignStart="@+id/location_name_text"
-        android:text="Location Type" />
+        android:text="@string/locType" />
 
     <EditText
         android:id="@+id/location_type_input"
@@ -43,7 +44,9 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/location_latitude_text"
         android:layout_alignStart="@+id/location_name_text"
-        android:text="Location Type" />
+        android:text="@string/locType"
+        android:inputType="text"
+        android:hint="@string/locType"/>
 
     <TextView
         android:id="@+id/location_longitude_text"
@@ -51,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/longitude_input"
         android:layout_alignStart="@+id/location_name_text"
-        android:text="Location Longitude" />
+        android:text="@string/locLongitude" />
 
     <EditText
         android:id="@+id/longitude_input"
@@ -60,8 +63,9 @@
         android:layout_above="@+id/location_type_text"
         android:layout_centerHorizontal="true"
         android:ems="10"
+        android:hint="@string/locLongitude"
         android:inputType="number"
-        android:text="Longitude" />
+        android:text="@string/locLongitude" />
 
     <TextView
         android:id="@+id/location_latitude_text"
@@ -69,7 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/latitude_input"
         android:layout_alignStart="@+id/location_name_text"
-        android:text="Location Latitude" />
+        android:text="@string/locLatitude" />
 
     <EditText
         android:id="@+id/latitude_input"
@@ -79,7 +83,8 @@
         android:layout_centerHorizontal="true"
         android:ems="10"
         android:inputType="number"
-        android:text="Latitude" />
+        android:text="@string/locLatitude"
+        android:hint="@string/locLatitude"/>
 
     <TextView
         android:id="@+id/location_address_text"
@@ -87,7 +92,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/address_input"
         android:layout_alignStart="@+id/location_name_text"
-        android:text="Location Address" />
+        android:text="@string/locAddress" />
 
     <EditText
         android:id="@+id/address_input"
@@ -97,7 +102,8 @@
         android:layout_centerHorizontal="true"
         android:ems="10"
         android:inputType="text"
-        android:text="Address" />
+        android:text="@string/locAddress"
+        android:hint="@string/locAddress"/>
 
     <TextView
         android:id="@+id/location_phone_text"
@@ -105,7 +111,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/phone_input"
         android:layout_alignStart="@+id/location_name_text"
-        android:text="Location Phone Number" />
+        android:text="@string/locPhone" />
 
     <EditText
         android:id="@+id/phone_input"
@@ -115,8 +121,9 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="101dp"
         android:ems="10"
-        android:inputType="number"
-        android:text="Phone Number" />
+        android:inputType="phone"
+        android:text="@string/locPhone"
+        android:hint="@string/locPhone"/>
 
     <Button
         android:id="@+id/location_edit_submit"
@@ -126,7 +133,7 @@
         android:layout_marginBottom="20dp"
         android:layout_toEndOf="@+id/location_name_text"
         android:onClick="onLocationSubmitPressed"
-        android:text="Submit" />
+        android:text="@string/submit" />
 
     <Button
         android:id="@+id/location_edit_cancel2"
@@ -135,6 +142,6 @@
         android:layout_alignParentEnd="true"
         android:layout_alignTop="@+id/location_edit_submit"
         android:layout_marginEnd="68dp"
-        android:text="Cancel"
+        android:text="@string/cancel"
         android:onClick="onLocationCancelPressed"/>
 </RelativeLayout>

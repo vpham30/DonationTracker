@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
@@ -12,31 +11,30 @@
         android:layout_alignParentBottom="true"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="80dp"
-        app:layoutManager="LinearLayoutManager"
         tools:context="cs2340.gatech.edu.lab3.controllers.CourseListActivity"
         tools:listitem="@layout/inventory_list_item">
 
     </android.support.v7.widget.RecyclerView>
 
     <Button
+        android:id="@+id/add_item_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="25dp"
-        android:layout_marginEnd="30dp"
-        android:text="Add Item"
-        android:id="@+id/add_item_button"
-        android:onClick="onAddItemPressed"/>
+        android:layout_marginBottom="18dp"
+        android:layout_marginEnd="46dp"
+        android:onClick="onAddItemPressed"
+        android:text="@string/addItem" />
 
     <Button
+        android:id="@+id/log_out_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="25dp"
-        android:text="Back"
-        android:layout_marginStart="30dp"
-        android:id="@+id/log_out_button"
-        android:onClick="onBackToInventoryPressed"/>
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/add_item_button"
+        android:layout_marginStart="33dp"
+        android:onClick="onBackToInventoryPressed"
+        android:text="@string/back" />
 
 </RelativeLayout>

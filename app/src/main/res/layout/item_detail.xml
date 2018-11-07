@@ -10,48 +10,42 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Item Name"/>
-        <!--android:textAppearance="" -->
+        android:text="@string/item_name"/>
 
     <TextView
         android:id="@+id/item_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Location"/>
-        <!--android:textAppearance="" -->
+        android:text="@string/location"/>
 
     <TextView
         android:id="@+id/item_short"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Item Short Description"/>
-        <!--android:textAppearance="" -->
+        android:text="@string/shortDescription"/>
 
     <TextView
         android:id="@+id/item_full"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Item Full Description"/>
-        <!--android:textAppearance="" -->
+        android:text="@string/fullDescription"/>
 
     <TextView
         android:id="@+id/item_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Item Value"/>
-        <!--android:textAppearance=""-->
+        android:text="@string/value"/>
 
     <TextView
         android:id="@+id/item_category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Item Category"/>
-        <!--android:textAppearance="" -->
+        android:text="@string/category"/>
 
 
     <TextView
@@ -59,29 +53,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Item Time Stamp"/>
-        <!--android:textAppearance="" -->
+        android:text="@string/time"/>
 
 
     <Button
         android:id="@+id/item_edit_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Edit"
+        android:text="@string/edit"
         android:onClick="onEditItemPressed" />
 
     <Button
         android:id="@+id/item_delete_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Delete Item"
+        android:text="@string/delete"
         android:onClick="onDeleteItemPressed" />
 
     <Button
         android:id="@+id/item_back_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Back"
+        android:text="@string/back"
         android:onClick="onBackItemPressed">
 
     </Button>
