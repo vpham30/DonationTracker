@@ -39,6 +39,11 @@ public class AppLandingActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onMapPressed (View view) {
+        Intent intent = new Intent(this, MapsActivity.class);
+        startActivity(intent);
+    }
+
 
 
 
