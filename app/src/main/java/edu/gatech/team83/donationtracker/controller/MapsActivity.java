@@ -12,15 +12,20 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+
 import edu.gatech.team83.donationtracker.R;
+import edu.gatech.team83.donationtracker.model.Location;
+import edu.gatech.team83.donationtracker.model.Model;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private Model model;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        model = Model.getInstance();
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -41,11 +46,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng marker = null;
+        for (Location l : model.getLocations()) {
+            marker = new LatLng(Double.parseDouble(l.getLatitude()), Double.parseDouble(l.getLongitude()));
+            mMap.addMarker(new MarkerOptions().position(marker).title(l.getName()).snippet(l.getPhonenumber()));
+        }
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(marker));
     }
 
     public void onLogOutPressed (View view) {
