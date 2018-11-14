@@ -34,7 +34,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
 
     public void loadData(View view) {
-    /**    Task<DocumentSnapshot> documentSnapshotTask = db.collection("counters")
+/*        Task<DocumentSnapshot> documentSnapshotTask = db.collection("counters")
                 .document("loccount")
                 .get().addOnCompleteListener(this, new OnCompleteListener<DocumentSnapshot>() {
                     @Override
@@ -65,7 +65,7 @@ public class WelcomeActivity extends AppCompatActivity {
                                     loc.setLongitude(location.get("Longitude"));
                                     loc.setLatitude(location.get("Latitude"));
                                     loc.setAddress(location.get("Street Address"));
-                                    loc.setPhonenumber(location.get("Phone"));
+                                    loc.setPhoneNumber(location.get("Phone"));
                                     inv.add(new Item("test1", "timestamp","value",
                                             "short description","long description",
                                             "category", loc.getName()));
@@ -93,7 +93,7 @@ public class WelcomeActivity extends AppCompatActivity {
                                         Toast.LENGTH_SHORT).show();
                             }
                         } else {
-                            Toast.makeText(WelcomeActivity.this, "dbase ERROR",
+                            Toast.makeText(WelcomeActivity.this, "database ERROR",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }

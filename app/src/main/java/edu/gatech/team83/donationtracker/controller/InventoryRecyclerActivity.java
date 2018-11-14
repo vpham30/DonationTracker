@@ -96,7 +96,6 @@ public class InventoryRecyclerActivity extends AppCompatActivity {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //takes us to the Edit page with the Loc's info
                     Context context = view.getContext();
                     //this needs some work
                     Intent intent = new Intent(context, ItemDetailActivity.class);

@@ -3,6 +3,10 @@ package edu.gatech.team83.donationtracker.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+/**
+ * Class that contains an donation's name, timestamp, value,
+ * short description, long description, and name
+ */
 public class Item implements Parcelable{
 
     private String name;
@@ -16,46 +20,78 @@ public class Item implements Parcelable{
     public static final String[] categories = {"Clothing", "Hat", "Kitchen", "Electronics",
             "Household", "Other"};
 
+
+    /**
+     * @return the name of the donation
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * @param name the name of the donation
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * @return the time at which the donation was processed
+     */
     public CharSequence getTime() {
         return time;
     }
 
+    /**
+     * @param time the time at which the donation is processed
+     */
     public void setTime(String time) {
         this.time = time;
     }
 
+    /**
+     * @return the monetary value of the donation
+     */
     public CharSequence getValue() {
         return value;
     }
 
+    /**
+     * @param value the monetary value of the donation
+     */
     public void setValue(String value) {
         this.value = value;
     }
 
+    /**
+     * @return a short description of the donation
+     */
     public CharSequence getShortDesc() {
         return shortDesc;
     }
 
+    /**
+     * @param shortDesc a short description
+     */
     public void setShortDesc(String shortDesc) {
         this.shortDesc = shortDesc;
     }
 
+    /**
+     * @return a long description of the donation
+     */
     public CharSequence getLongDesc() {
         return longDesc;
     }
 
+    /**
+     * @param longDesc a long description
+     */
     public void setLongDesc(String longDesc) {
         this.longDesc = longDesc;
     }
 
+    
     public String getCategory() {
         return category;
     }
@@ -69,19 +105,18 @@ public class Item implements Parcelable{
         return locName;
     }
 
-    public Item(String name, String time, String value, String shortDesc, String longDesc,
-                String category, String locName) {
+    public Item(String name, String time, String value, String category, String locName) {
         this.name = name;
         this.time = time;
         this.value = value;
-        this.shortDesc = shortDesc;
-        this.longDesc = longDesc;
+        this.shortDesc = "";
+        this.longDesc = "";
         this.category = category;
         this.locName = locName;
     }
 
     public Item() {
-        this("","","","","","", "");
+        this("","","","", "");
     }
 
     public Item(Parcel in) {
@@ -126,6 +161,9 @@ public class Item implements Parcelable{
 
     @Override
     public boolean equals(Object o) {
+        if (getClass() != o.getClass()) {
+            return false;
+        }
         Item item = (Item) o;
         return (name + time).equals(item.name + item.time);
     }

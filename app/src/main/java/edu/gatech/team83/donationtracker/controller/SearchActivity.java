@@ -74,12 +74,12 @@ public class SearchActivity extends AppCompatActivity {
 
     public void onSearchLocPressed(View v) {
         Intent intent = new Intent(this, LocationRecyclerActivity.class);
-        ArrayList<Location> locs = model.locSearch(locField.getText().toString());
-        if (locs.isEmpty()) {
+        ArrayList<Location> locations = model.locSearch(locField.getText().toString());
+        if (locations.isEmpty()) {
             Snackbar failed = Snackbar.make(v, "No matches!", Snackbar.LENGTH_SHORT);
             failed.show();
         } else {
-            intent.putParcelableArrayListExtra("Locations",  locs);
+            intent.putParcelableArrayListExtra("Locations",  locations);
             intent.putExtra("Act", "SearchActivity");
             startActivity(intent);
         }

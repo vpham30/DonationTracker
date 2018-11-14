@@ -5,22 +5,21 @@ import android.os.Parcelable;
 
 public class User implements Parcelable{
     private final String email;
-    private final long locid;
+    private final long locationId;
     private final String type;
 
-    public User(String email, long locid, String type) {
+    public User(String email, long locationId, String type) {
         this.email = email;
-        this.locid = locid;
+        this.locationId = locationId;
         this.type = type;
     }
 
     private String getEmail() {
         return email;
     }
-
     private User(Parcel in) {
         this.email = in.readString();
-        this.locid = in.readLong();
+        this.locationId = in.readLong();
         this.type = in.readString();
     }
 
@@ -32,7 +31,7 @@ public class User implements Parcelable{
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(email);
-        dest.writeLong(locid);
+        dest.writeLong(locationId);
         dest.writeString(type);
     }
 
@@ -52,6 +51,9 @@ public class User implements Parcelable{
 
     @Override
     public boolean equals(Object o){
+        if (getClass() != o.getClass()) {
+            return false;
+        }
         User u = (User) o;
         return email.equals(u.getEmail());
     }

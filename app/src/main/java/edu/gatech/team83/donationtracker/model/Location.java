@@ -15,23 +15,23 @@ public class Location implements Parcelable {
     private String longitude;
     private String latitude;
     private String address;
-    private String phonenumber;
+    private String phoneNumber;
     private List<Item> inventory;
 
-    public Location(int id, String type, String name, String longitude, String latitude,
-                    String address, String phonenumber) {
-        this.id = id;
+    public Location(String name, String longitude, String latitude,
+                    String address, String phoneNumber) {
+        this.id = -1;
         this.name = name;
-        this.type = type;
+        this.type = "";
         this.longitude = longitude;
         this.latitude = latitude;
         this.address = address;
-        this.phonenumber = phonenumber;
+        this.phoneNumber = phoneNumber;
         inventory = new ArrayList<>();
     }
 
     public Location(){
-        this(0, "","", "","", "", "");
+        this("", "","", "", "");
     }
 
 
@@ -53,12 +53,11 @@ public class Location implements Parcelable {
     public CharSequence getAddress() { return address; }
     public void setAddress(String address) { this.address = address; }
 
-    public String getPhonenumber() { return phonenumber; }
-    public void setPhonenumber(String phonenumber) { this.phonenumber = phonenumber; }
+    public String getPhoneNumber() { return phoneNumber; }
+    public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
 
     public List<Item> getInventory() { return Collections.unmodifiableList(inventory); }
     public void setInventory(List<Item> inventory) { this.inventory = new ArrayList<>(inventory); }
-
 
     public Location(Parcel in) {
         id = in.readLong();
@@ -67,7 +66,7 @@ public class Location implements Parcelable {
         longitude = in.readString();
         latitude = in.readString();
         address = in.readString();
-        phonenumber = in.readString();
+        phoneNumber = in.readString();
         inventory = in.readArrayList(Item.class.getClassLoader());
     }
 
@@ -84,7 +83,7 @@ public class Location implements Parcelable {
         dest.writeString(longitude);
         dest.writeString(latitude);
         dest.writeString(address);
-        dest.writeString(phonenumber);
+        dest.writeString(phoneNumber);
         dest.writeList(inventory);
     }
 
@@ -104,6 +103,9 @@ public class Location implements Parcelable {
 
     @Override
     public boolean equals(Object o){
+        if (getClass() != o.getClass()) {
+            return false;
+        }
         Location loc = (Location) o;
         return loc.id == id;
     }

@@ -100,7 +100,6 @@ public class LocationRecyclerActivity extends AppCompatActivity {
                         intent.putExtra("Act", "LocationRecyclerActivity");
                         startActivity(intent);
                     } else {
-                        //takes us to the Edit page with the Loc's info
                         Context context = view.getContext();
                         Intent intent = new Intent(context, LocationDetailActivity.class);
                         //sends the id of the location

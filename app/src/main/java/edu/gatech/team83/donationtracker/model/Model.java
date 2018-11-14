@@ -62,8 +62,7 @@ public final class Model {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful()) {
-                    locations = (ArrayList<Location>)
-                            Objects.requireNonNull(task.getResult()).toObjects(Location.class);
+                    locations = Objects.requireNonNull(task.getResult()).toObjects(Location.class);
                 }
             }
         });
@@ -76,7 +75,8 @@ public final class Model {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if(task.isSuccessful()) {
-                    count = Objects.requireNonNull(task.getResult().getLong("num"));
+                    count = Objects.requireNonNull(
+                            Objects.requireNonNull(task.getResult()).getLong("num"));
                 }
             }
         });
@@ -138,10 +138,10 @@ public final class Model {
      * Adds an Item to a given Location in the database
      * and then updates the item list
      * @param loc the location you wish to add to
-     * @param dono the item you wish to add
-     */public void addDonation(Location loc, Item dono) {
+     * @param donation the item you wish to add
+     */public void addDonation(Location loc, Item donation) {
         List<Item> inv = loc.getInventory();
-        inv.add(dono);
+        inv.add(donation);
         loc.setInventory(inv);
         db.collection("locations").document(loc.getName() + "#" + loc.getId()).set(loc)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -155,12 +155,12 @@ public final class Model {
     /**
      * Updates the info in the database for one item in a given location to match a second
      * @param loc the location where the item is located
-     * @param toedit the item you wish to update
+     * @param toEdit the item you wish to update
      * @param newItem the item which holds the data to update
      */
-    public void editDonation(Location loc, Item toedit, Item newItem) {
+    public void editDonation(Location loc, Item toEdit, Item newItem) {
         List<Item> inv = loc.getInventory();
-        inv.remove(toedit);
+        inv.remove(toEdit);
         inv.add(newItem);
         loc.setInventory(inv);
         db.collection("locations").document(loc.getName() + "#" + loc.getId()).set(loc)
@@ -183,7 +183,7 @@ public final class Model {
     /**
      * signs out the current user
      */
-    public void signout() {
+    public void signOut() {
         mAuth.signOut();
     }
 
@@ -194,7 +194,7 @@ public final class Model {
      * @param searchField the String typed into the search bar ("" if all items)
      * @param category the category you are searching for ("" if all categories)
      * @param loc the location you are searching in (null if all locations)
-     * @return an arraylist containing all items matching the search query
+     * @return an ArrayList containing all items matching the search query
      */
     public Iterable<Item> itemSearch(String searchField, String category, Location loc) {
         Iterable<Item> toSearch;
@@ -213,7 +213,7 @@ public final class Model {
      * Location search method
      *
      * @param searchField the String typed into the search bar ("" if all items)
-     * @return an arraylist containing all items matching the search query
+     * @return an ArrayList containing all items matching the search query
      */
     public ArrayList<Location> locSearch(String searchField) {
         ArrayList<Location> ret = new ArrayList<>();
