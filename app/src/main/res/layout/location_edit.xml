@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/location_edit_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -16,7 +14,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/name_input"
         android:layout_alignStart="@+id/name_input"
-        android:text="Location Name" />
+        android:labelFor="@+id/name_input"
+        android:text="@string/location_name" />
 
 
     <EditText
@@ -27,7 +26,7 @@
         android:layout_centerHorizontal="true"
         android:ems="10"
         android:inputType="text"
-        android:text="Name" />
+        android:text="@string/name" />
 
     <TextView
         android:id="@+id/location_type_text"
@@ -35,7 +34,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/location_type_input"
         android:layout_alignStart="@+id/location_name_text"
-        android:text="Location Type" />
+        android:labelFor="@+id/location_type_input"
+        android:text="@string/location_type" />
 
     <EditText
         android:id="@+id/location_type_input"
@@ -43,15 +43,17 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/location_latitude_text"
         android:layout_alignStart="@+id/location_name_text"
-        android:text="Location Type" />
+        android:text="@string/location_type"
+        android:inputType="" />
 
     <TextView
         android:id="@+id/location_longitude_text"
+        android:labelFor="@+id/longitude_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/longitude_input"
         android:layout_alignStart="@+id/location_name_text"
-        android:text="Location Longitude" />
+        android:text="@string/location_longitude" />
 
     <EditText
         android:id="@+id/longitude_input"
@@ -61,15 +63,16 @@
         android:layout_centerHorizontal="true"
         android:ems="10"
         android:inputType="number"
-        android:text="Longitude" />
+        android:text="@string/longitude" />
 
     <TextView
         android:id="@+id/location_latitude_text"
         android:layout_width="wrap_content"
+        android:labelFor="@+id/latitude_input"
         android:layout_height="wrap_content"
         android:layout_above="@+id/latitude_input"
         android:layout_alignStart="@+id/location_name_text"
-        android:text="Location Latitude" />
+        android:text="@string/location_latitude" />
 
     <EditText
         android:id="@+id/latitude_input"
@@ -79,15 +82,16 @@
         android:layout_centerHorizontal="true"
         android:ems="10"
         android:inputType="number"
-        android:text="Latitude" />
+        android:text="@string/latitude" />
 
     <TextView
         android:id="@+id/location_address_text"
         android:layout_width="wrap_content"
+        android:labelFor="@+id/address_input"
         android:layout_height="wrap_content"
         android:layout_above="@+id/address_input"
         android:layout_alignStart="@+id/location_name_text"
-        android:text="Location Address" />
+        android:text="@string/location_address" />
 
     <EditText
         android:id="@+id/address_input"
@@ -97,15 +101,16 @@
         android:layout_centerHorizontal="true"
         android:ems="10"
         android:inputType="text"
-        android:text="Address" />
+        android:text="@string/address" />
 
     <TextView
         android:id="@+id/location_phone_text"
+        android:labelFor="@+id/phone_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/phone_input"
         android:layout_alignStart="@+id/location_name_text"
-        android:text="Location Phone Number" />
+        android:text="@string/location_phone_number" />
 
     <EditText
         android:id="@+id/phone_input"
@@ -115,18 +120,18 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="101dp"
         android:ems="10"
-        android:inputType="number"
-        android:text="Phone Number" />
+        android:inputType="phone"
+        android:text="@string/phone_number" />
 
     <Button
         android:id="@+id/location_edit_submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/location_longitude_text"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
-        android:layout_toEndOf="@+id/location_name_text"
+        android:layout_marginBottom="36dp"
         android:onClick="onLocationSubmitPressed"
-        android:text="Submit" />
+        android:text="@string/submit" />
 
     <Button
         android:id="@+id/location_edit_cancel2"
@@ -135,6 +140,6 @@
         android:layout_alignParentEnd="true"
         android:layout_alignTop="@+id/location_edit_submit"
         android:layout_marginEnd="68dp"
-        android:text="Cancel"
+        android:text="@string/cancel"
         android:onClick="onLocationCancelPressed"/>
 </RelativeLayout>

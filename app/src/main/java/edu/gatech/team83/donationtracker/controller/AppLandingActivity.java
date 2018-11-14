@@ -5,12 +5,16 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import java.util.ArrayList;
+
 import edu.gatech.team83.donationtracker.R;
+import edu.gatech.team83.donationtracker.model.Location;
 import edu.gatech.team83.donationtracker.model.Model;
 
 public class AppLandingActivity extends AppCompatActivity {
     private Model model;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_applanding);
@@ -19,7 +23,7 @@ public class AppLandingActivity extends AppCompatActivity {
 
     public void onViewLocPressed (View view) {
         Intent intent = new Intent(this, LocationRecyclerActivity.class);
-        intent.putParcelableArrayListExtra("Locations", model.getLocations());
+        intent.putParcelableArrayListExtra("Locations", (ArrayList<Location>) model.getLocations());
         startActivity(intent);
     }
 

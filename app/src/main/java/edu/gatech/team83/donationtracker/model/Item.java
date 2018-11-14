@@ -11,9 +11,10 @@ public class Item implements Parcelable{
     private String shortDesc;
     private String longDesc;
     private String category;
-    private String locName;
+    private final String locName;
 
-    public final static String[] categories = {"Clothing", "Hat", "Kitchen", "Electronics", "Household", "Other"};
+    public static final String[] categories = {"Clothing", "Hat", "Kitchen", "Electronics",
+            "Household", "Other"};
 
     public String getName() {
         return name;
@@ -23,7 +24,7 @@ public class Item implements Parcelable{
         this.name = name;
     }
 
-    public String getTime() {
+    public CharSequence getTime() {
         return time;
     }
 
@@ -31,7 +32,7 @@ public class Item implements Parcelable{
         this.time = time;
     }
 
-    public String getValue() {
+    public CharSequence getValue() {
         return value;
     }
 
@@ -39,7 +40,7 @@ public class Item implements Parcelable{
         this.value = value;
     }
 
-    public String getShortDesc() {
+    public CharSequence getShortDesc() {
         return shortDesc;
     }
 
@@ -47,7 +48,7 @@ public class Item implements Parcelable{
         this.shortDesc = shortDesc;
     }
 
-    public String getLongDesc() {
+    public CharSequence getLongDesc() {
         return longDesc;
     }
 
@@ -64,15 +65,12 @@ public class Item implements Parcelable{
     }
 
 
-    public String getLocName() {
+    public CharSequence getLocName() {
         return locName;
     }
 
-    public void setLocName(String locName) {
-        this.locName = locName;
-    }
-
-    public Item(String name, String time, String value, String shortDesc, String longDesc, String category, String locName) {
+    public Item(String name, String time, String value, String shortDesc, String longDesc,
+                String category, String locName) {
         this.name = name;
         this.time = time;
         this.value = value;
@@ -115,10 +113,12 @@ public class Item implements Parcelable{
     public static final Parcelable.Creator<Item> CREATOR
             = new Parcelable.Creator<Item> (){
 
+        @Override
         public Item createFromParcel(Parcel in) {
             return new Item(in);
         }
 
+        @Override
         public Item[] newArray (int size) {
             return new Item[size];
         }
@@ -128,5 +128,10 @@ public class Item implements Parcelable{
     public boolean equals(Object o) {
         Item item = (Item) o;
         return (name + time).equals(item.name + item.time);
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode() + time.hashCode();
     }
 }

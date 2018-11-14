@@ -4,6 +4,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Location implements Parcelable {
 
@@ -16,7 +18,8 @@ public class Location implements Parcelable {
     private String phonenumber;
     private ArrayList<Item> inventory;
 
-    public Location(int id, String type, String name, String longitude, String latitude, String address, String phonenumber) {
+    public Location(int id, String type, String name, String longitude, String latitude,
+                    String address, String phonenumber) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -38,7 +41,7 @@ public class Location implements Parcelable {
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 
-    public String getType() { return type; }
+    public CharSequence getType() { return type; }
     public void setType(String type) { this.type = type; }
 
     public String getLongitude() { return longitude; }
@@ -47,13 +50,13 @@ public class Location implements Parcelable {
     public String getLatitude() { return latitude; }
     public void setLatitude(String latitude) { this.latitude = latitude; }
 
-    public String getAddress() { return address; }
+    public CharSequence getAddress() { return address; }
     public void setAddress(String address) { this.address = address; }
 
     public String getPhonenumber() { return phonenumber; }
     public void setPhonenumber(String phonenumber) { this.phonenumber = phonenumber; }
 
-    public ArrayList<Item> getInventory() { return inventory; }
+    public List<Item> getInventory() { return Collections.unmodifiableList(inventory); }
     public void setInventory(ArrayList<Item> inventory) { this.inventory = inventory; }
 
 
@@ -88,10 +91,12 @@ public class Location implements Parcelable {
     public static final Parcelable.Creator<Location> CREATOR
             = new Parcelable.Creator<Location> (){
 
+        @Override
         public Location createFromParcel(Parcel in) {
             return new Location(in);
         }
 
+        @Override
         public Location[] newArray (int size) {
             return new Location[size];
         }
@@ -101,5 +106,10 @@ public class Location implements Parcelable {
     public boolean equals(Object o){
         Location loc = (Location) o;
         return loc.id == id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Long.valueOf(id).hashCode();
     }
 }

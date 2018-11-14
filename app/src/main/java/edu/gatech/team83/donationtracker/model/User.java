@@ -4,9 +4,9 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class User implements Parcelable{
-    private String email;
-    private long locid;
-    private String type;
+    private final String email;
+    private final long locid;
+    private final String type;
 
     public User(String email, long locid, String type) {
         this.email = email;
@@ -14,31 +14,11 @@ public class User implements Parcelable{
         this.type = type;
     }
 
-    public String getEmail() {
+    private String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public long getLoc() {
-        return locid;
-    }
-
-    public void setLoc(long locid) {
-        this.locid = locid;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public User(Parcel in) {
+    private User(Parcel in) {
         this.email = in.readString();
         this.locid = in.readLong();
         this.type = in.readString();
@@ -59,10 +39,12 @@ public class User implements Parcelable{
     public static final Parcelable.Creator<User> CREATOR
             = new Parcelable.Creator<User> (){
 
+        @Override
         public User createFromParcel(Parcel in) {
             return new User(in);
         }
 
+        @Override
         public User[] newArray (int size) {
             return new User[size];
         }
@@ -72,5 +54,10 @@ public class User implements Parcelable{
     public boolean equals(Object o){
         User u = (User) o;
         return email.equals(u.getEmail());
+    }
+
+    @Override
+    public int hashCode() {
+        return email.hashCode();
     }
 }

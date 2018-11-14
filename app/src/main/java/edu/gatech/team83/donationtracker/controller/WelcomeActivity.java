@@ -24,8 +24,8 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import edu.gatech.team83.donationtracker.R;
 import edu.gatech.team83.donationtracker.model.Item;
@@ -34,7 +34,7 @@ import edu.gatech.team83.donationtracker.model.Model;
 
 public class WelcomeActivity extends AppCompatActivity {
     private FirebaseFirestore db;
-    private Model model = Model.getInstance();
+    private final Model model = Model.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,15 +55,17 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     public void loadData(View view) {
-        Task<DocumentSnapshot> documentSnapshotTask = db.collection("counters").document("loccount")
+        Task<DocumentSnapshot> documentSnapshotTask = db.collection("counters")
+                .document("loccount")
                 .get().addOnCompleteListener(this, new OnCompleteListener<DocumentSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         if (task.isSuccessful()) {
                             Reader in;
                             long num;
-                            DocumentReference count = db.collection("counters").document("loccount");
-                            if (task.getResult().get("num") == null) {
+                            DocumentReference count = db.collection("counters")
+                                    .document("loccount");
+                            if (Objects.requireNonNull(task.getResult()).get("num") == null) {
                                 num = 0;
                             } else {
                                 num = (long) task.getResult().get("num");
@@ -72,35 +74,48 @@ public class WelcomeActivity extends AppCompatActivity {
                                 InputStream is = getAssets().open("LocationData.csv");
                                 in = new InputStreamReader(is);
                                 ArrayList<Item> inv;
-                                Iterable<CSVRecord> locations = CSVFormat.EXCEL.withHeader().parse(in);
+                                Iterable<CSVRecord> locations
+                                        = CSVFormat.EXCEL.withHeader().parse(in);
                                 for (CSVRecord location : locations) {
                                     Location loc = new Location();
                                     inv = new ArrayList<>();
-                                    loc.setId(++num);
+                                    ++num;
+                                    loc.setId(num);
                                     loc.setName(location.get("Name"));
                                     loc.setType(location.get("Type"));
                                     loc.setLongitude(location.get("Longitude"));
                                     loc.setLatitude(location.get("Latitude"));
                                     loc.setAddress(location.get("Street Address"));
                                     loc.setPhonenumber(location.get("Phone"));
-                                    inv.add(new Item("test1", "timestamp","value","short description","long description","category", loc.getName()));
-                                    inv.add(new Item("test2", "timestamp","value","short description","long description","category", loc.getName()));
-                                    inv.add(new Item("test3", "timestamp","value","short description","long description","category", loc.getName()));
+                                    inv.add(new Item("test1", "timestamp","value",
+                                            "short description","long description",
+                                            "category", loc.getName()));
+                                    inv.add(new Item("test2", "timestamp","value",
+                                            "short description","long description",
+                                            "category", loc.getName()));
+                                    inv.add(new Item("test3", "timestamp","value",
+                                            "short description","long description",
+                                            "category", loc.getName()));
                                     loc.setInventory(inv);
-                                    db.collection("locations").document(location.get("Name") + "#" + num).set(loc);
+                                    db.collection("locations")
+                                            .document(location.get("Name") + "#" + num).set(loc);
                                 }
                                 Map<String, Object> cdata = new HashMap<>();
                                 cdata.put("num", num);
                                 count.set(cdata);
-                                Toast.makeText(WelcomeActivity.this, "success", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(WelcomeActivity.this, "success",
+                                        Toast.LENGTH_SHORT).show();
                                 model.updateFromDatabase();
                             } catch (FileNotFoundException e) {
-                                Toast.makeText(WelcomeActivity.this, "file not found", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(WelcomeActivity.this, "file not found",
+                                        Toast.LENGTH_SHORT).show();
                             } catch (IOException f) {
-                                Toast.makeText(WelcomeActivity.this, "IO", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(WelcomeActivity.this, "IO",
+                                        Toast.LENGTH_SHORT).show();
                             }
                         } else {
-                            Toast.makeText(WelcomeActivity.this, "dbase ERROR", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(WelcomeActivity.this, "dbase ERROR",
+                                    Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

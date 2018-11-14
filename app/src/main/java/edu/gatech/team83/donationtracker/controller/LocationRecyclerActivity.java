@@ -3,12 +3,10 @@ package edu.gatech.team83.donationtracker.controller;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +15,6 @@ import android.widget.TextView;
 import java.util.List;
 
 import edu.gatech.team83.donationtracker.R;
-import edu.gatech.team83.donationtracker.model.Item;
 import edu.gatech.team83.donationtracker.model.Location;
 import edu.gatech.team83.donationtracker.model.Model;
 
@@ -27,6 +24,7 @@ public class LocationRecyclerActivity extends AppCompatActivity {
 //    LocationAdapter.LocationViewHolder
     private Model model;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.location_list);
@@ -39,7 +37,7 @@ public class LocationRecyclerActivity extends AppCompatActivity {
     }
 
     public void onAddLocationPressed(View v) {
-        if (model.getType().equals("Admin")) {
+        if ("Admin".equals(model.getType())) {
             Context context = v.getContext();
             Intent intent = new Intent(context, LocationEditActivity.class);
             startActivity(intent);
@@ -51,11 +49,14 @@ public class LocationRecyclerActivity extends AppCompatActivity {
 
     public void onBackPressed(View v) {
         Context context = v.getContext();
-        if (getIntent().hasExtra("Act") && getIntent().getStringExtra("Act").equals("SearchActivity")) {
+        if (getIntent().hasExtra("Act")
+                && "SearchActivity".equals(getIntent().getStringExtra("Act"))) {
             Intent intent = new Intent(context, SearchActivity.class);
+            startActivity(intent);
         }
         Intent intent = new Intent(context, WelcomeActivity.class);
         startActivity(intent);
+
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
@@ -70,9 +71,9 @@ public class LocationRecyclerActivity extends AppCompatActivity {
 
     public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.LocationViewHolder> {
 
-        private List<Location> locList;
+        private final List<Location> locList;
 
-        public LocationAdapter(List<Location> locList) {
+        LocationAdapter(List<Location> locList) {
             this.locList = locList;
         }
 
@@ -84,14 +85,15 @@ public class LocationRecyclerActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onBindViewHolder(LocationViewHolder holder, final int position) {
+        public void onBindViewHolder(final LocationViewHolder holder, int position) {
             holder.locName.setText(locList.get(position).getName());
             //Listener for when you click a item in the recycler
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (getIntent().hasExtra("Act") && getIntent().getStringExtra("Act").equals("SearchActivity")) {
-                        Location location = locList.get(position);
+                    if (getIntent().hasExtra("Act")
+                            && "SearchActivity".equals(getIntent().getStringExtra("Act"))) {
+                        Location location = locList.get(holder.getAdapterPosition());
                         Intent intent = new Intent(view.getContext(), SearchActivity.class);
                         intent.putExtra("Location", location);
                         intent.putExtra("Act", "LocationRecyclerActivity");
@@ -101,7 +103,7 @@ public class LocationRecyclerActivity extends AppCompatActivity {
                         Context context = view.getContext();
                         Intent intent = new Intent(context, LocationDetailActivity.class);
                         //sends the id of the location
-                        intent.putExtra("Location", locList.get(position));
+                        intent.putExtra("Location", locList.get(holder.getAdapterPosition()));
                         startActivity(intent);
                     }
                 }
@@ -115,10 +117,10 @@ public class LocationRecyclerActivity extends AppCompatActivity {
 
         class LocationViewHolder extends RecyclerView.ViewHolder {
 
-            TextView locName;
-            View itemView;
+            final TextView locName;
+            final View itemView;
 
-            public LocationViewHolder(View itemView) {
+            LocationViewHolder(View itemView) {
                 super(itemView);
 
                 this.itemView = itemView;
@@ -128,5 +130,4 @@ public class LocationRecyclerActivity extends AppCompatActivity {
 
     }
 
-    //todo add refresh
 }

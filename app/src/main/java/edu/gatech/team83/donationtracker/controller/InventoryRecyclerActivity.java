@@ -3,18 +3,15 @@ package edu.gatech.team83.donationtracker.controller;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import edu.gatech.team83.donationtracker.R;
 import edu.gatech.team83.donationtracker.model.Item;
@@ -25,13 +22,14 @@ public class InventoryRecyclerActivity extends AppCompatActivity {
 
     private Location loc;
     private ArrayList<Item> inv;
-    private Model model;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.inventory_list);
-        model = Model.getInstance();
-        if (getIntent().hasExtra("Act") && getIntent().getStringExtra("Act").equals("SearchActivity")) {
+        Model model = Model.getInstance();
+        if (getIntent().hasExtra("Act")
+                && "SearchActivity".equals(getIntent().getStringExtra("Act"))) {
             loc = getIntent().getParcelableExtra("Location");
             inv = getIntent().getParcelableArrayListExtra("Inventory");
         } else if(getIntent().hasExtra("Location")) {
@@ -46,7 +44,8 @@ public class InventoryRecyclerActivity extends AppCompatActivity {
 
     public void onAddItemPressed(View v) {
         Intent intent = new Intent(v.getContext(), ItemEditActivity.class);
-        if (getIntent().hasExtra("Act") && getIntent().getStringExtra("Act").equals("SearchActivity")) {
+        if (getIntent().hasExtra("Act")
+                && "SearchActivity".equals(getIntent().getStringExtra("Act"))) {
             return;
         }
         intent.putExtra("Location", loc);
@@ -54,7 +53,8 @@ public class InventoryRecyclerActivity extends AppCompatActivity {
     }
 
     public void onBackToInventoryPressed(View v) {
-        if (getIntent().hasExtra("Act") && getIntent().getStringExtra("Act").equals("SearchActivity")) { ;
+        if (getIntent().hasExtra("Act")
+                && "SearchActivity".equals(getIntent().getStringExtra("Act"))) {
             Intent intent = new Intent(v.getContext(), SearchActivity.class);
             intent.putExtra("Location", loc);
             intent.putExtra("Act", "InventoryRecyclerActivity");
@@ -70,12 +70,13 @@ public class InventoryRecyclerActivity extends AppCompatActivity {
         recyclerView.setAdapter(new InventoryAdapter(inv, loc));
     }
 
-    public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.InventoryViewHolder> {
+    public class InventoryAdapter
+            extends RecyclerView.Adapter<InventoryAdapter.InventoryViewHolder> {
 
-        private ArrayList<Item> inv;
+        private final ArrayList<Item> inv;
         private Location loc;
 
-        public InventoryAdapter(ArrayList<Item> inv, Location loc) {
+        InventoryAdapter(ArrayList<Item> inv, Location loc) {
             this.inv = inv;
             this.loc = loc;
         }
@@ -88,7 +89,7 @@ public class InventoryRecyclerActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onBindViewHolder(InventoryViewHolder holder, final int position) {
+        public void onBindViewHolder(final InventoryViewHolder holder, int position) {
             holder.itemName.setText(inv.get(position).getName());
             //Listener for when you click a item in the recycler
             holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -99,12 +100,13 @@ public class InventoryRecyclerActivity extends AppCompatActivity {
                     //this needs some work
                     Intent intent = new Intent(context, ItemDetailActivity.class);
                     //sends the id of the location
-                    intent.putExtra("Item", inv.get(position));
+                    intent.putExtra("Item", inv.get(holder.getAdapterPosition()));
                     if (getIntent().hasExtra("Location")) {
                         loc = getIntent().getParcelableExtra("Location");
                         intent.putExtra("Location", loc);
                     }
-                    if (getIntent().hasExtra("Act") && getIntent().getStringExtra("Act").equals("SearchActivity")) {
+                    if (getIntent().hasExtra("Act")
+                            && "SearchActivity".equals(getIntent().getStringExtra("Act"))) {
                         intent.putExtra("Act", "SearchActivity");
                         intent.putParcelableArrayListExtra("Inventory", inv);
                     }
@@ -120,10 +122,10 @@ public class InventoryRecyclerActivity extends AppCompatActivity {
 
         class InventoryViewHolder extends RecyclerView.ViewHolder {
 
-            TextView itemName;
-            View itemView;
+            final TextView itemName;
+            final View itemView;
 
-            public InventoryViewHolder(View itemView) {
+            InventoryViewHolder(View itemView) {
                 super(itemView);
 
                 this.itemView = itemView;

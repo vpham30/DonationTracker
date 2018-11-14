@@ -24,8 +24,8 @@ public class ItemEditActivity extends AppCompatActivity {
     private Model model;
     private Location location;
     private Item item;
-    private EditText item_location;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_edit);
@@ -35,7 +35,7 @@ public class ItemEditActivity extends AppCompatActivity {
         shortDescription = findViewById(R.id.item_short_description_input);
         longDescription = findViewById(R.id.item_full_description_input);
         category = findViewById(R.id.item_category_input);
-        item_location = findViewById(R.id.item_location_input);
+        EditText item_location = findViewById(R.id.item_location_input);
         model = Model.getInstance();
 
         location = getIntent().getParcelableExtra("Location");
@@ -91,7 +91,8 @@ public class ItemEditActivity extends AppCompatActivity {
             Intent intent = new Intent(this, ItemDetailActivity.class);
             intent.putExtra("Location", location);
             intent.putExtra("Item", item);
-            if (getIntent().hasExtra("Act") && getIntent().getStringExtra("Act").equals("SearchActivity")) {
+            if (getIntent().hasExtra("Act")
+                    && "SearchActivity".equals(getIntent().getStringExtra("Act"))) {
                 intent.putExtra("Act", "SearchActivity");
             }
             startActivity(intent);

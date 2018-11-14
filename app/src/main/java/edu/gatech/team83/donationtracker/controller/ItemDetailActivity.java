@@ -14,17 +14,11 @@ import edu.gatech.team83.donationtracker.model.Model;
 import edu.gatech.team83.donationtracker.R;
 
 public class ItemDetailActivity extends AppCompatActivity {
-    private TextView name;
-    private TextView time;
-    private TextView value;
-    private TextView shortDesc;
-    private TextView longDesc;
-    private TextView category;
-    private TextView item_location;
     private Item item;
     private Model model;
     private Location location;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_detail);
@@ -32,13 +26,13 @@ public class ItemDetailActivity extends AppCompatActivity {
         item = getIntent().getParcelableExtra("Item");
         model = Model.getInstance();
 
-        name = findViewById(R.id.item_name);
-        time = findViewById(R.id.item_time);
-        value = findViewById(R.id.item_value);
-        shortDesc = findViewById(R.id.item_short);
-        longDesc = findViewById(R.id.item_full);
-        category = findViewById(R.id.item_category);
-        item_location = findViewById(R.id.item_location);
+        TextView name = findViewById(R.id.item_name);
+        TextView time = findViewById(R.id.item_time);
+        TextView value = findViewById(R.id.item_value);
+        TextView shortDesc = findViewById(R.id.item_short);
+        TextView longDesc = findViewById(R.id.item_full);
+        TextView category = findViewById(R.id.item_category);
+        TextView item_location = findViewById(R.id.item_location);
 
 
         name.setText(item.getName());
@@ -58,7 +52,8 @@ public class ItemDetailActivity extends AppCompatActivity {
             location = getIntent().getParcelableExtra("Location");
             intent.putExtra("Location", location);
         }
-        if (getIntent().hasExtra("Act") && getIntent().getStringExtra("Act").equals("SearchActivity")) {
+        if (getIntent().hasExtra("Act")
+                && "SearchActivity".equals(getIntent().getStringExtra("Act"))) {
             intent.putExtra("Act", "SearchActivity");
             intent.putExtra("Inventory", getIntent().getParcelableArrayListExtra("Inventory"));
         }
@@ -66,12 +61,13 @@ public class ItemDetailActivity extends AppCompatActivity {
     }
 
     public void onEditItemPressed(View v) {
-        if (model.getType().equals("Admin")) {
+        if ("Admin".equals(model.getType())) {
             Context context = v.getContext();
             Intent intent = new Intent(context, ItemEditActivity.class);
             intent.putExtra("Item", item);
             intent.putExtra("Location", location);
-            if (getIntent().hasExtra("Act") && getIntent().getStringExtra("Act").equals("SearchActivity")) {
+            if (getIntent().hasExtra("Act")
+                    && "SearchActivity".equals(getIntent().getStringExtra("Act"))) {
                 intent.putExtra("Act", "SearchActivity");
             }
             startActivity(intent);
@@ -80,5 +76,10 @@ public class ItemDetailActivity extends AppCompatActivity {
             failed.show();
         }
 
+    }
+
+    public void onDeleteItemPressed(View v) {
+        //will do something later
+        model.updateFromDatabase();
     }
 }

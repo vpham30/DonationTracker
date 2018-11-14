@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Location Name"
+        android:text="@string/location_name"
         android:textAppearance="?attr/textAppearanceListItem" />
 
     <TextView
@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Location Type"
+        android:text="@string/location_type"
         android:textAppearance="?attr/textAppearanceListItem" />
 
     <TextView
@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Location Longitude"
+        android:text="@string/location_longitude"
         android:textAppearance="?attr/textAppearanceListItem" />
 
     <TextView
@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Location Latitude"
+        android:text="@string/location_latitude"
         android:textAppearance="?attr/textAppearanceListItem" />
 
     <TextView
@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Location Address"
+        android:text="@string/location_address"
         android:textAppearance="?attr/textAppearanceListItem" />
 
     <TextView
@@ -50,28 +50,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Location Phone Number"
+        android:text="@string/location_phone_number"
         android:textAppearance="?attr/textAppearanceListItem" />
 
     <Button
         android:id="@+id/location_edit_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Edit Location"
+        android:text="@string/edit_location"
         android:onClick="onEditLocationPressed"/>
 
     <Button
         android:id="@+id/inventory_view_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="View Inventory"
+        android:text="@string/view_inventory"
         android:onClick="onViewInventoryPressed"/>
 
     <Button
         android:id="@+id/location_back_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Back"
+        android:text="@string/back"
         android:onClick="onBackPressed">
 
     </Button>

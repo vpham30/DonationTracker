@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Item Name"/>
+        android:text="@string/item_name"/>
         <!--android:textAppearance="" -->
 
     <TextView
@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Location"/>
+        android:text="@string/location"/>
         <!--android:textAppearance="" -->
 
     <TextView
@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Item Short Description"/>
+        android:text="@string/item_short_description"/>
         <!--android:textAppearance="" -->
 
     <TextView
@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Item Full Description"/>
+        android:text="@string/item_full_description"/>
         <!--android:textAppearance="" -->
 
     <TextView
@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Item Value"/>
+        android:text="@string/item_value"/>
         <!--android:textAppearance=""-->
 
     <TextView
@@ -50,7 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Item Category"/>
+        android:text="@string/item_category"/>
         <!--android:textAppearance="" -->
 
 
@@ -59,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Item Time Stamp"/>
+        android:text="@string/item_time_stamp"/>
         <!--android:textAppearance="" -->
 
 
@@ -67,21 +67,21 @@
         android:id="@+id/item_edit_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Edit"
+        android:text="@string/edit"
         android:onClick="onEditItemPressed" />
 
     <Button
         android:id="@+id/item_delete_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Delete Item"
+        android:text="@string/delete_item"
         android:onClick="onDeleteItemPressed" />
 
     <Button
         android:id="@+id/item_back_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Back"
+        android:text="@string/back"
         android:onClick="onBackItemPressed">
 
     </Button>

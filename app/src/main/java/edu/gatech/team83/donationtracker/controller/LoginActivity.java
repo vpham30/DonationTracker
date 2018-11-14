@@ -13,12 +13,14 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Objects;
+
 import edu.gatech.team83.donationtracker.R;
 import edu.gatech.team83.donationtracker.model.Model;
 
 public class LoginActivity extends AppCompatActivity {
-    EditText user;
-    EditText pass;
+    private EditText user;
+    private EditText pass;
     private Model model;
 
     private FirebaseAuth mAuth;
@@ -35,17 +37,22 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onLoginPressed(View view) {
-        mAuth.signInWithEmailAndPassword(user.getText().toString().trim(), pass.getText().toString().trim())
+        mAuth.signInWithEmailAndPassword(user.getText().toString().trim(),
+                pass.getText().toString().trim())
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(LoginActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Success",
+                                    Toast.LENGTH_SHORT).show();
                             model.updateFromDatabase();
-                            model.setCurrentuser(mAuth.getCurrentUser());
-                            Intent intent = new Intent(LoginActivity.this, AppLandingActivity.class);
+                            model.setCurrentuser(Objects.requireNonNull(mAuth.getCurrentUser()));
+                            Intent intent = new Intent(LoginActivity.this,
+                                    AppLandingActivity.class);
                             startActivity(intent);
                         } else {
-                            Toast.makeText(LoginActivity.this, "" + task.getException(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "" + task.getException(),
+                                    Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
