@@ -14,7 +14,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:fullBackupContent="@xml/backup_descriptor">
         <activity
             android:name=".controller.WelcomeActivity"
             android:label="Donation Tracker">
@@ -23,38 +24,48 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:scheme="http"
+                    android:host="www.team83.com" />
+            </intent-filter>
         </activity>
         <activity android:name=".controller.LoggedIn" />
         <activity
             android:name=".controller.LoginActivity"
-            android:label="Login"></activity>
+            android:label="Login" />
         <activity
             android:name=".controller.RegisterActivity"
-            android:label="Register"></activity>
+            android:label="Register" />
         <activity
             android:name=".controller.LocationRecyclerActivity"
-            android:label="Locations"></activity>
+            android:label="Locations" />
         <activity
             android:name=".controller.LocationDetailActivity"
-            android:label="Location Details"></activity>
+            android:label="Location Details" />
         <activity
             android:name=".controller.LocationEditActivity"
-            android:label="Edit Location"></activity>
+            android:label="Edit Location" />
         <activity
             android:name=".controller.ItemEditActivity"
-            android:label="Edit Item"></activity>
+            android:label="Edit Item" />
         <activity
             android:name=".controller.ItemDetailActivity"
-            android:label="Item Details"></activity>
+            android:label="Item Details" />
         <activity
             android:name=".controller.InventoryRecyclerActivity"
-            android:label="Inventory"></activity>
+            android:label="Inventory" />
         <activity
             android:name=".controller.AppLandingActivity"
-            android:label="Home"></activity>
+            android:label="Home" />
         <activity
             android:name=".controller.SearchActivity"
-            android:label="Search"></activity>
+            android:label="Search" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -69,7 +80,7 @@
 
         <activity
             android:name=".controller.MapsActivity"
-            android:label="Map"></activity>
+            android:label="Map" />
     </application>
 
 </manifest>

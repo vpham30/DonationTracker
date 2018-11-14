@@ -23,6 +23,7 @@ public class LocationEditActivity extends AppCompatActivity {
     private Location location;
     private Model model;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.location_edit);
@@ -35,7 +36,7 @@ public class LocationEditActivity extends AppCompatActivity {
         model = Model.getInstance();
 
         if(getIntent().hasExtra("Location")) {
-            location = (Location) getIntent().getParcelableExtra("Location");
+            location = getIntent().getParcelableExtra("Location");
 
             name.setText(location.getName());
             type.setText(location.getType());

@@ -14,14 +14,9 @@ import edu.gatech.team83.donationtracker.model.Model;
 
 public class LocationDetailActivity extends AppCompatActivity {
     private Location location;
-    private TextView locationName;
-    private TextView locationType;
-    private TextView longitude;
-    private TextView latitude;
-    private TextView address;
-    private TextView phone;
     private Model model;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.location_detail);
@@ -31,12 +26,12 @@ public class LocationDetailActivity extends AppCompatActivity {
         model = Model.getInstance();
 
 
-        locationName = findViewById(R.id.location_name);
-        locationType = findViewById(R.id.location_type);
-        longitude = findViewById(R.id.location_longitude);
-        latitude = findViewById(R.id.location_latitude);
-        address = findViewById(R.id.location_address);
-        phone = findViewById(R.id.location_phone_number);
+        TextView locationName = findViewById(R.id.location_name);
+        TextView locationType = findViewById(R.id.location_type);
+        TextView longitude = findViewById(R.id.location_longitude);
+        TextView latitude = findViewById(R.id.location_latitude);
+        TextView address = findViewById(R.id.location_address);
+        TextView phone = findViewById(R.id.location_phone_number);
 
         locationName.setText(location.getName());
         locationType.setText(location.getType());
@@ -54,7 +49,7 @@ public class LocationDetailActivity extends AppCompatActivity {
     }
 
     public void onEditLocationPressed(View v) {
-        if (model.getType().equals("Admin")) {
+        if ("Admin".equals(model.getType())) {
             Context context = v.getContext();
             Intent intent = new Intent(context, LocationEditActivity.class);
             intent.putExtra("Location", location);

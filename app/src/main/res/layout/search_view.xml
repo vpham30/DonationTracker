@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -15,7 +13,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:onClick="onSearchPressed"
-        android:text="Search"
+        android:text="@string/search"
         app:layout_constraintBottom_toTopOf="@+id/LocSpinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editText2"
@@ -29,7 +27,7 @@
         android:layout_marginBottom="16dp"
         android:layout_marginStart="16dp"
         android:onClick="onBackSearchButton"
-        android:text="Back"
+        android:text="@string/back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -41,7 +39,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginTop="8dp"
         android:onClick="onSearchLocPressed"
-        android:text="Search"
+        android:text="@string/search"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LocSpinner"
@@ -69,7 +67,7 @@
         android:layout_marginStart="8dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Enter Name of Location"
+        android:text="@string/enter_name_of_location"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/search_loc_button"
         app:layout_constraintHorizontal_bias="0.444"
@@ -83,7 +81,8 @@
         android:layout_marginTop="52dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Enter Name of Item"
+        android:text="@string/enter_name_of_item"
+        android:labelFor="@+id/textView10"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
@@ -94,7 +93,7 @@
         android:layout_marginBottom="12dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="Item Name"
+        android:text="@string/item_name"
         app:layout_constraintBottom_toTopOf="@+id/editText2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -107,7 +106,8 @@
         android:layout_marginBottom="8dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="Location Name"
+        android:text="@string/location_name"
+        android:labelFor="@+id/editText"
         app:layout_constraintBottom_toTopOf="@+id/editText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LocSpinner"
@@ -120,7 +120,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Search"
+        android:text="@string/search"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -133,7 +133,8 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:text="Item Category"
+        android:text="@string/item_category"
+        android:labelFor="@+id/editText2"
         app:layout_constraintBottom_toTopOf="@+id/LocSpinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.028"

@@ -1,42 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:id="@+id/relativeLayout">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="80dp"
-        app:layoutManager="LinearLayoutManager"
         tools:context="cs2340.gatech.edu.lab3.controllers.CourseListActivity"
-        tools:listitem="@layout/location_list_item">
+        tools:listitem="@layout/location_list_item"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
     </android.support.v7.widget.RecyclerView>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
         android:layout_marginBottom="25dp"
         android:layout_marginEnd="30dp"
-        android:text="Add Location"
+        android:text="@string/add_location"
         android:id="@+id/add_location_button"
-        android:onClick="onAddLocationPressed"/>
+        android:onClick="onAddLocationPressed"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/log_out_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_marginBottom="25dp"
         android:layout_marginStart="30dp"
         android:onClick="onBackPressed"
-        android:text="Back" />
+        android:text="@string/back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

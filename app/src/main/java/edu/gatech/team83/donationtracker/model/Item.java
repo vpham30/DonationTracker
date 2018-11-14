@@ -3,6 +3,10 @@ package edu.gatech.team83.donationtracker.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+/**
+ * Class that contains an donation's name, timestamp, value,
+ * short description, long description, and name
+ */
 public class Item implements Parcelable{
 
     private String name;
@@ -11,79 +15,123 @@ public class Item implements Parcelable{
     private String shortDesc;
     private String longDesc;
     private String category;
-    private String locName;
+    private final String locName;
 
-    public final static String[] categories = {"Clothing", "Hat", "Kitchen", "Electronics", "Household", "Other"};
+    public static final String[] categories = {"Clothing", "Hat", "Kitchen", "Electronics",
+            "Household", "Other"};
 
+
+    /**
+     * @return the name of the donation
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * @param name the name of the donation
+     */
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getTime() {
+    /**
+     * @return the time at which the donation was processed
+     */
+    public CharSequence getTime() {
         return time;
     }
 
+    /**
+     * @param time the time at which the donation is processed
+     */
     public void setTime(String time) {
         this.time = time;
     }
 
-    public String getValue() {
+    /**
+     * @return the monetary value of the donation
+     */
+    public CharSequence getValue() {
         return value;
     }
 
+    /**
+     * @param value the monetary value of the donation
+     */
     public void setValue(String value) {
         this.value = value;
     }
 
-    public String getShortDesc() {
+    /**
+     * @return a short description of the donation
+     */
+    public CharSequence getShortDesc() {
         return shortDesc;
     }
 
+    /**
+     * @param shortDesc a short description
+     */
     public void setShortDesc(String shortDesc) {
         this.shortDesc = shortDesc;
     }
 
-    public String getLongDesc() {
+    /**
+     * @return a long description of the donation
+     */
+    public CharSequence getLongDesc() {
         return longDesc;
     }
 
+    /**
+     * @param longDesc a long description
+     */
     public void setLongDesc(String longDesc) {
         this.longDesc = longDesc;
     }
 
+    /**
+     * @return the category of the donation
+     */
     public String getCategory() {
         return category;
     }
 
+    /**
+     * @param category the category of the donation
+     */
     public void setCategory(String category) {
         this.category = category;
     }
 
-
-    public String getLocName() {
+    /**
+     * @return the name of the location that this donation belongs to
+     */
+    public CharSequence getLocName() {
         return locName;
     }
 
-    public void setLocName(String locName) {
-        this.locName = locName;
-    }
-
-    public Item(String name, String time, String value, String shortDesc, String longDesc, String category, String locName) {
+    /**
+     * constructor for the donation
+     * @param name the name of the donation
+     * @param time when the donation is processed
+     * @param value the monetary value of the donation
+     * @param category the category of the donation
+     * @param locName the name of the location the item belongs to
+     */
+    public Item(String name, String time, String value, String category, String locName) {
         this.name = name;
         this.time = time;
         this.value = value;
-        this.shortDesc = shortDesc;
-        this.longDesc = longDesc;
+        this.shortDesc = "";
+        this.longDesc = "";
         this.category = category;
         this.locName = locName;
     }
 
     public Item() {
-        this("","","","","","", "");
+        this("","","","", "");
     }
 
     public Item(Parcel in) {
@@ -115,10 +163,12 @@ public class Item implements Parcelable{
     public static final Parcelable.Creator<Item> CREATOR
             = new Parcelable.Creator<Item> (){
 
+        @Override
         public Item createFromParcel(Parcel in) {
             return new Item(in);
         }
 
+        @Override
         public Item[] newArray (int size) {
             return new Item[size];
         }
@@ -126,7 +176,15 @@ public class Item implements Parcelable{
 
     @Override
     public boolean equals(Object o) {
+        if (getClass() != o.getClass()) {
+            return false;
+        }
         Item item = (Item) o;
         return (name + time).equals(item.name + item.time);
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode() + time.hashCode();
     }
 }

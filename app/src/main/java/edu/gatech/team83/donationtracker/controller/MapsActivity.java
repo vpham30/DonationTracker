@@ -17,9 +17,9 @@ import edu.gatech.team83.donationtracker.R;
 import edu.gatech.team83.donationtracker.model.Location;
 import edu.gatech.team83.donationtracker.model.Model;
 
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    private GoogleMap mMap;
     private Model model;
 
     @Override
@@ -45,13 +45,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
         LatLng marker = null;
         for (Location l : model.getLocations()) {
-            marker = new LatLng(Double.parseDouble(l.getLatitude()), Double.parseDouble(l.getLongitude()));
-            mMap.addMarker(new MarkerOptions().position(marker).title(l.getName()).snippet(l.getPhonenumber()));
+            marker = new LatLng(Double.parseDouble(l.getLatitude()),
+                    Double.parseDouble(l.getLongitude()));
+            googleMap.addMarker(new MarkerOptions().position(marker)
+                    .title(l.getName()).snippet(l.getPhonenumber()));
         }
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(marker));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(marker));
     }
 
     public void onLogOutPressed (View view) {
