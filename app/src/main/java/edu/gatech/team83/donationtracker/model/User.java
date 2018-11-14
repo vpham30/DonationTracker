@@ -3,11 +3,20 @@ package edu.gatech.team83.donationtracker.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+/**
+ * class that represents the User
+ */
 public class User implements Parcelable{
     private final String email;
     private final long locationId;
     private final String type;
 
+    /**
+     * constructor for the user
+     * @param email the user's email
+     * @param locationId the id of the location where the user works
+     * @param type the user's account type
+     */
     public User(String email, long locationId, String type) {
         this.email = email;
         this.locationId = locationId;

@@ -91,20 +91,35 @@ public class Item implements Parcelable{
         this.longDesc = longDesc;
     }
 
-    
+    /**
+     * @return the category of the donation
+     */
     public String getCategory() {
         return category;
     }
 
+    /**
+     * @param category the category of the donation
+     */
     public void setCategory(String category) {
         this.category = category;
     }
 
-
+    /**
+     * @return the name of the location that this donation belongs to
+     */
     public CharSequence getLocName() {
         return locName;
     }
 
+    /**
+     * constructor for the donation
+     * @param name the name of the donation
+     * @param time when the donation is processed
+     * @param value the monetary value of the donation
+     * @param category the category of the donation
+     * @param locName the name of the location the item belongs to
+     */
     public Item(String name, String time, String value, String category, String locName) {
         this.name = name;
         this.time = time;
