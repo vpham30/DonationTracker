@@ -91,7 +91,6 @@ public class Item implements Parcelable{
         this.longDesc = longDesc;
     }
 
-    
     public String getCategory() {
         return category;
     }
