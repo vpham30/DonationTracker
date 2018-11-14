@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this, "Success",
                                     Toast.LENGTH_SHORT).show();
                             model.updateFromDatabase();
-                            model.setCurrentuser(Objects.requireNonNull(mAuth.getCurrentUser()));
+                            model.setCurrentUser(Objects.requireNonNull(mAuth.getCurrentUser()));
                             Intent intent = new Intent(LoginActivity.this,
                                     AppLandingActivity.class);
                             startActivity(intent);

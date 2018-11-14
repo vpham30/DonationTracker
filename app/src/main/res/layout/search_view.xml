@@ -82,6 +82,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="@string/enter_name_of_item"
+        android:labelFor="@+id/textView10"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
@@ -106,6 +107,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="@string/location_name"
+        android:labelFor="@+id/editText"
         app:layout_constraintBottom_toTopOf="@+id/editText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LocSpinner"
@@ -132,6 +134,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:text="@string/item_category"
+        android:labelFor="@+id/editText2"
         app:layout_constraintBottom_toTopOf="@+id/LocSpinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.028"

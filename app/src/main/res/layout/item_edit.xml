@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -8,151 +10,234 @@
         android:id="@+id/item_edit_cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="12dp"
-        android:layout_marginStart="83dp"
+        android:layout_marginBottom="14dp"
+        android:layout_marginEnd="5dp"
         android:onClick="onCancelPressed"
         android:text="@string/cancel"
-        tools:layout_editor_absoluteX="219dp"
-        tools:layout_editor_absoluteY="503dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/item_edit_submit"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/item_edit_submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/item_edit_cancel"
-        android:layout_marginEnd="83dp"
+        android:layout_marginBottom="14dp"
+        android:layout_marginEnd="26dp"
         android:onClick="onSubmitPressed"
         android:text="@string/submit"
-        tools:layout_editor_absoluteX="78dp"
-        tools:layout_editor_absoluteY="503dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/item_edit_cancel" />
 
-    <ScrollView
-        android:id="@+id/item_scroll_view"
-        android:layout_width="341dp"
-        android:layout_height="465dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="22dp"
+
+    <TextView
+        android:id="@+id/item_name_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="21dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginRight="21dp"
+        android:layout_marginStart="21dp"
         android:layout_marginTop="22dp"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+        android:labelFor="@+id/item_name_input"
+        android:text="@string/name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:id="@+id/item_linear_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+    <EditText
+        android:id="@+id/item_name_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="21dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginRight="21dp"
+        android:layout_marginStart="21dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/item_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_name_text" />
 
-            <TextView
-                android:id="@+id/item_name_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:labelFor="@+id/item_name_input"
-                android:text="@string/name" />
+    <TextView
+        android:id="@+id/time_stamp_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="21dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginRight="21dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="45dp"
+        android:labelFor="@+id/time_stamp_input"
+        android:text="@string/time_stamp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/item_name_input" />
 
-            <EditText
-                android:id="@+id/item_name_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="@string/item_name" />
-
-            <TextView
-                android:id="@+id/time_stamp_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:labelFor="@+id/time_stamp_input"
-                android:text="@string/time_stamp" />
-
-            <EditText
-                android:id="@+id/time_stamp_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="@string/item_time_stamp" />
+    <EditText
+        android:id="@+id/time_stamp_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="21dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginRight="21dp"
+        android:layout_marginStart="21dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/item_time_stamp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/time_stamp_text" />
 
 
-            <TextView
-                android:id="@+id/item_location_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:labelFor="@+id/item_location_input"
-                android:text="@string/location" />
+    <TextView
+        android:id="@+id/item_location_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="21dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginRight="21dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="45dp"
+        android:labelFor="@+id/item_location_input"
+        android:text="@string/location"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/time_stamp_input" />
 
-            <EditText
-                android:id="@+id/item_location_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="@string/item_location" />
+    <EditText
+        android:id="@+id/item_location_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="21dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginRight="21dp"
+        android:layout_marginStart="21dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/item_location"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_location_text" />
 
-            <TextView
-                android:id="@+id/item_short_description_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:labelFor="@+id/item_short_description_input"
-                android:text="@string/short_description" />
+    <TextView
+        android:id="@+id/item_short_description_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="21dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginRight="21dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="45dp"
+        android:labelFor="@+id/item_short_description_input"
+        android:text="@string/short_description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/item_location_input" />
 
-            <EditText
-                android:id="@+id/item_short_description_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="@string/item_short_description" />
+    <EditText
+        android:id="@+id/item_short_description_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="21dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginRight="21dp"
+        android:layout_marginStart="21dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/item_short_description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_short_description_text" />
 
-            <TextView
-                android:id="@+id/item_full_description_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:labelFor="@+id/item_full_description_input"
-                android:text="@string/full_description" />
+    <TextView
+        android:id="@+id/item_full_description_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="21dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginRight="21dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="45dp"
+        android:labelFor="@+id/item_full_description_input"
+        android:text="@string/full_description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/item_short_description_input" />
 
-            <EditText
-                android:id="@+id/item_full_description_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="@string/item_full_description" />
+    <EditText
+        android:id="@+id/item_full_description_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="21dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginRight="21dp"
+        android:layout_marginStart="21dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/item_full_description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_full_description_text" />
 
-            <TextView
-                android:id="@+id/item_value_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:labelFor="@+id/item_value_input"
-                android:text="@string/value" />
+    <TextView
+        android:id="@+id/item_value_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="21dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginRight="21dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="45dp"
+        android:labelFor="@+id/item_value_input"
+        android:text="@string/value"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/item_full_description_input" />
 
-            <EditText
-                android:id="@+id/item_value_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="@string/item_value" />
+    <EditText
+        android:id="@+id/item_value_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="21dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginRight="21dp"
+        android:layout_marginStart="21dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/item_value"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_value_text" />
 
-            <TextView
-                android:id="@+id/item_category_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:labelFor="@+id/item_category_input"
-                android:text="@string/category" />
+    <TextView
+        android:id="@+id/item_category_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="21dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginRight="21dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="45dp"
+        android:labelFor="@+id/item_category_input"
+        android:text="@string/category"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/item_value_input" />
 
-            <EditText
-                android:id="@+id/item_category_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="@string/item_category" />
+    <EditText
+        android:id="@+id/item_category_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/item_category"
+        app:layout_constraintEnd_toStartOf="@+id/item_edit_submit"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/item_edit_submit"
+        app:layout_constraintTop_toBottomOf="@+id/item_category_text" />
 
-        </LinearLayout>
-    </ScrollView>
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

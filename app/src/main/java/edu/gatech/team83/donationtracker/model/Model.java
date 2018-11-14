@@ -6,7 +6,7 @@ import android.support.annotation.NonNull;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -23,10 +23,10 @@ import java.util.Objects;
 public final class Model {
 
     private static final FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    private ArrayList<Location> locations;
-    private ArrayList<Item> allItems;
+    private List<Location> locations;
+    private List<Item> allItems;
     private long count;
-    private String usertype;
+    private String userType;
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     /** Singleton instance */
@@ -62,7 +62,8 @@ public final class Model {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful()) {
-                    locations = (ArrayList<Location>) Objects.requireNonNull(task.getResult()).toObjects(Location.class);
+                    locations = (ArrayList<Location>)
+                            Objects.requireNonNull(task.getResult()).toObjects(Location.class);
                 }
             }
         });
@@ -75,7 +76,7 @@ public final class Model {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if(task.isSuccessful()) {
-                    count = Objects.requireNonNull(task.getResult()).getLong("num");
+                    count = Objects.requireNonNull(task.getResult().getLong("num"));
                 }
             }
         });
@@ -85,13 +86,13 @@ public final class Model {
      * gets the data(type/locked/etc) for the current user and adds it to the model.
      * @param user the user gotten from mAuth.getCurrentUser()
      */
-    public void setCurrentuser(FirebaseUser user) {
+    public void setCurrentUser(UserInfo user) {
         db.collection("users").document(user.getUid()).get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if(task.isSuccessful()) {
-                    usertype = Objects.requireNonNull(task.getResult()).getString("type");
+                    userType = Objects.requireNonNull(task.getResult()).getString("type");
                 }
             }
         });
@@ -118,13 +119,13 @@ public final class Model {
     /**
      * Updates the info in the database for one location to match the data in a second location
      * and then updates the location list
-     * @param toedit the location you wish to update in the database
+     * @param toEdit the location you wish to update in the database
      * @param loc the location which holds the data to update
      */
-    public void editLocation(Location toedit, Location loc) {
-        loc.setId(toedit.getId());
-        db.collection("locations").document(toedit.getName() + "#" + toedit.getId()).delete();
-        db.collection("locations").document(loc.getName() + "#" + toedit.getId()).set(loc)
+    public void editLocation(Location toEdit, Location loc) {
+        loc.setId(toEdit.getId());
+        db.collection("locations").document(toEdit.getName() + "#" + toEdit.getId()).delete();
+        db.collection("locations").document(loc.getName() + "#" + toEdit.getId()).set(loc)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -139,7 +140,7 @@ public final class Model {
      * @param loc the location you wish to add to
      * @param dono the item you wish to add
      */public void addDonation(Location loc, Item dono) {
-        ArrayList<Item> inv = loc.getInventory();
+        List<Item> inv = loc.getInventory();
         inv.add(dono);
         loc.setInventory(inv);
         db.collection("locations").document(loc.getName() + "#" + loc.getId()).set(loc)
@@ -158,7 +159,7 @@ public final class Model {
      * @param newItem the item which holds the data to update
      */
     public void editDonation(Location loc, Item toedit, Item newItem) {
-        ArrayList<Item> inv = loc.getInventory();
+        List<Item> inv = loc.getInventory();
         inv.remove(toedit);
         inv.add(newItem);
         loc.setInventory(inv);
@@ -176,7 +177,7 @@ public final class Model {
      * @return the users type
      */
     public String getType() {
-        return usertype;
+        return userType;
     }
 
     /**

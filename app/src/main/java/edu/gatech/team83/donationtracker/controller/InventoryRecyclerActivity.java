@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import edu.gatech.team83.donationtracker.R;
 import edu.gatech.team83.donationtracker.model.Item;
@@ -21,7 +22,7 @@ import edu.gatech.team83.donationtracker.model.Model;
 public class InventoryRecyclerActivity extends AppCompatActivity {
 
     private Location loc;
-    private ArrayList<Item> inv;
+    private List<Item> inv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +68,7 @@ public class InventoryRecyclerActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new InventoryAdapter(inv, loc));
+        recyclerView.setAdapter(new InventoryAdapter((ArrayList<Item>) inv, loc));
     }
 
     public class InventoryAdapter
@@ -77,7 +78,7 @@ public class InventoryRecyclerActivity extends AppCompatActivity {
         private Location loc;
 
         InventoryAdapter(ArrayList<Item> inv, Location loc) {
-            this.inv = inv;
+            this.inv = new ArrayList<>(inv);
             this.loc = loc;
         }
 

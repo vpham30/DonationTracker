@@ -16,7 +16,7 @@ public class Location implements Parcelable {
     private String latitude;
     private String address;
     private String phonenumber;
-    private ArrayList<Item> inventory;
+    private List<Item> inventory;
 
     public Location(int id, String type, String name, String longitude, String latitude,
                     String address, String phonenumber) {
@@ -57,7 +57,7 @@ public class Location implements Parcelable {
     public void setPhonenumber(String phonenumber) { this.phonenumber = phonenumber; }
 
     public List<Item> getInventory() { return Collections.unmodifiableList(inventory); }
-    public void setInventory(ArrayList<Item> inventory) { this.inventory = inventory; }
+    public void setInventory(List<Item> inventory) { this.inventory = new ArrayList<>(inventory); }
 
 
     public Location(Parcel in) {

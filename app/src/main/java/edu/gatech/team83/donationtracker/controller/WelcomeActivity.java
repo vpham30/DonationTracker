@@ -1,46 +1,24 @@
 package edu.gatech.team83.donationtracker.controller;
 
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
 import android.content.Intent;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVRecord;
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-
 import edu.gatech.team83.donationtracker.R;
-import edu.gatech.team83.donationtracker.model.Item;
-import edu.gatech.team83.donationtracker.model.Location;
 import edu.gatech.team83.donationtracker.model.Model;
 
 public class WelcomeActivity extends AppCompatActivity {
-    private FirebaseFirestore db;
     private final Model model = Model.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-        db = FirebaseFirestore.getInstance();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
     }
         
     public void onLoginPressed(View view) {
@@ -54,8 +32,9 @@ public class WelcomeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
     public void loadData(View view) {
-        Task<DocumentSnapshot> documentSnapshotTask = db.collection("counters")
+    /**    Task<DocumentSnapshot> documentSnapshotTask = db.collection("counters")
                 .document("loccount")
                 .get().addOnCompleteListener(this, new OnCompleteListener<DocumentSnapshot>() {
                     @Override
@@ -73,7 +52,7 @@ public class WelcomeActivity extends AppCompatActivity {
                             try {
                                 InputStream is = getAssets().open("LocationData.csv");
                                 in = new InputStreamReader(is);
-                                ArrayList<Item> inv;
+                                List<Item> inv;
                                 Iterable<CSVRecord> locations
                                         = CSVFormat.EXCEL.withHeader().parse(in);
                                 for (CSVRecord location : locations) {
@@ -118,6 +97,9 @@ public class WelcomeActivity extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
+
                 });
+     */
+        model.updateFromDatabase();
     }
 }

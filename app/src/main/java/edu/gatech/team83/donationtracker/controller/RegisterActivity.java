@@ -66,8 +66,9 @@ public class RegisterActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 //if the user was added successfully add type to the db
-                                User u = new User(Objects.requireNonNull(mAuth.getCurrentUser()).getEmail(), -1,
-                                        ((AccountType) type.getSelectedItem()).name());
+                                User u = new User(
+                                        Objects.requireNonNull(mAuth.getCurrentUser()).getEmail(),
+                                        -1, ((AccountType) type.getSelectedItem()).name());
                                 db.collection("users").document(mAuth.getCurrentUser().getUid())
                                         .set(u)
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {

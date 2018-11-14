@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.gatech.team83.donationtracker.R;
@@ -74,7 +75,7 @@ public class LocationRecyclerActivity extends AppCompatActivity {
         private final List<Location> locList;
 
         LocationAdapter(List<Location> locList) {
-            this.locList = locList;
+            this.locList = new ArrayList<>(locList);
         }
 
         @Override
