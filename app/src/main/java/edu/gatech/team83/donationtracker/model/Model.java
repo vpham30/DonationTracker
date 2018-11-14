@@ -197,6 +197,9 @@ public final class Model {
      * @return an ArrayList containing all items matching the search query
      */
     public Iterable<Item> itemSearch(String searchField, String category, Location loc) {
+        if (searchField == null || category == null) {
+            throw new NullPointerException("the searchField and category cannot be null");
+        }
         Iterable<Item> toSearch;
         Collection<Item> ret = new ArrayList<>();
         toSearch = (loc == null) ? allItems : loc.getInventory();
@@ -216,6 +219,9 @@ public final class Model {
      * @return an ArrayList containing all items matching the search query
      */
     public ArrayList<Location> locSearch(String searchField) {
+        if (searchField == null) {
+            throw new NullPointerException("the searchField cannot be null");
+        }
         ArrayList<Location> ret = new ArrayList<>();
         for (Location l: locations) {
             if (l.getName().toLowerCase().contains(searchField.toLowerCase())) {
