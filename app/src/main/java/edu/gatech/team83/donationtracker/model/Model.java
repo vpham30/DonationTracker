@@ -16,13 +16,13 @@ import java.util.ArrayList;
 
 public class Model {
 
-    private static FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    private static ArrayList<Location> locations;
+    private static FirebaseAuth mAuth =  /*FirebaseAuth.getInstance()*/ null;
+    public static ArrayList<Location> locations;
     private static ArrayList<Item> allItems;
     private static FirebaseUser currentuser;
     private static long count;
     private static String usertype;
-    private static FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private static FirebaseFirestore db = /*FirebaseFirestore.getInstance()*/ null;
 
     /** Singleton instance */
     private static final Model _instance = new Model();
@@ -129,9 +129,11 @@ public class Model {
         return usertype;
     }
 
+    /*
     public void signout() {
         mAuth.signOut();
     }
+     */
 
     /**
      * main search method, only use this directly if the user is searching for a name and category in a specific location
@@ -191,6 +193,37 @@ public class Model {
 
     public ArrayList<Item> getAllItems() {
         return allItems;
+    }
+
+    public void loadDefault() {
+       ArrayList<Location> locs = new ArrayList<>();
+       Location loc1 = new Location();
+       ArrayList<Item> inv1 = new ArrayList<>();
+       inv1.add(new Item("test1", "123", "", "", "","Hat",""));
+       inv1.add(new Item("test2", "123", "", "", "","Clothing",""));
+       inv1.add(new Item("test3", "123", "", "", "","Kitchen",""));
+       loc1.setName("Loc1");
+       loc1.setId(1);
+       loc1.setInventory(inv1);
+       locs.add(loc1);
+       Location loc2 = new Location();
+       ArrayList<Item> inv2 = new ArrayList<>();
+       inv2.add(new Item("loc21", "345", "", "", "","Hat",""));
+       inv2.add(new Item("loc22", "345", "", "", "","Clothing",""));
+       inv2.add(new Item("loc23", "345", "", "", "","Kitchen",""));
+       loc2.setName("Loc2");
+       loc2.setId(2);
+       loc2.setInventory(inv2);
+       locs.add(loc2);
+       locations = locs;
+       ArrayList<Item> all = new ArrayList<>();
+        all.add(new Item("test1", "123", "", "", "","Hat",""));
+        all.add(new Item("test2", "123", "", "", "","Clothing",""));
+        all.add(new Item("test3", "123", "", "", "","Kitchen",""));
+        all.add(new Item("loc21", "345", "", "", "","Hat",""));
+        all.add(new Item("loc22", "345", "", "", "","Clothing",""));
+        all.add(new Item("loc23", "345", "", "", "","Kitchen",""));
+       allItems = all;
     }
 
 }

@@ -1,5 +1,6 @@
 package edu.gatech.team83.donationtracker;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -36,11 +37,11 @@ public class ModelUnitTest {
         blankString = "";
         blankLocation = new Location();
         model = Model.getInstance();
-        model.updateFromDatabase();
+        model.loadDefault();
+        allLocation = model.getLocations();
         allItems = model.getAllItems();
         allItemInAFD = new ArrayList<>();
-        allItemInAFD.add(allItems.get(0));
-        allLocation = model.getLocations();
+        allItemInAFD.addAll(allLocation.get(0).getInventory());
         firstLocation = allLocation.get(0);
         firstItemList = firstLocation.getInventory();
         validFirstItemList = new ArrayList<>();
@@ -52,54 +53,54 @@ public class ModelUnitTest {
     @Test(timeout = TIMEOUT)
     public void blankStringInputItem() {
         ArrayList<Item> list = model.itemSearch(blankString, blankString, firstLocation);
-        assertTrue("Did not give all Items in location", list.equals(allItemInAFD));
+        Assert.assertTrue("Did not give all Items in location", list.equals(allItemInAFD));
     }
 
     @Test(timeout = TIMEOUT)
     public void blankLocationInputItem() {
         ArrayList<Item> list = model.itemSearch(blankString, blankString, blankLocation);
-        assertTrue("Did not return blank list", list.equals(emptyItemList));
+        Assert.assertTrue("Did not return blank list", list.equals(emptyItemList));
     }
 
     @Test(timeout = TIMEOUT)
     public void mismatchedInputItem() {
-        ArrayList<Item> list = model.itemSearch("test1", "", firstLocation);
-        assertTrue("Did not return blank list", list.equals(emptyItemList));
+        ArrayList<Item> list = model.itemSearch("loc21", "", firstLocation);
+        Assert.assertTrue("Did not return blank list", list.equals(emptyItemList));
     }
 
     @Test(timeout = TIMEOUT)
     public void testValidItemSearch() {
         ArrayList<Item> list = model.itemSearch("test1", "Hat", firstLocation);
-        assertTrue("Did not return valid item list", list.equals(validFirstItemList));
+        Assert.assertTrue("Did not return valid item list", list.equals(validFirstItemList));
     }
 
     @Test(timeout = TIMEOUT)
     public void testInvalidItemSearch() {
         ArrayList<Item> list = model.itemSearch("test9", "Hat", firstLocation);
-        assertTrue("Did not return valid item list", list.equals(emptyItemList));
+        Assert.assertTrue("Did not return valid item list", list.equals(emptyItemList));
     }
 
     @Test(timeout = TIMEOUT)
     public void testNullItemSearch() {
         ArrayList<Item> list = model.itemSearch("", "", null);
-        assertTrue("Did not return valid item list", list.equals(allItems));
+        Assert.assertTrue("Did not return valid item list", list.equals(allItems));
     }
 
     @Test(timeout = TIMEOUT)
     public void testLocationSearch() {
-        ArrayList<Location> list = model.locSearch("AFD Station 4#1");
-        assertTrue("Did not return valid item list", list.equals(firstLocationList));
+        ArrayList<Location> list = model.locSearch("Loc1");
+        Assert.assertTrue("Did not return valid item list" + list.size(), list.equals(firstLocationList));
     }
 
     @Test(timeout = TIMEOUT)
     public void testAllLocationSearch() {
         ArrayList<Location> list = model.locSearch("");
-        assertTrue("Did not return valid item list", list.equals(allLocation));
+        Assert.assertTrue("Did not return valid item list", list.equals(allLocation));
     }
 
     @Test(timeout = TIMEOUT)
     public void testEmptyLocationSearch() {
         ArrayList<Location> list = model.locSearch("CATDOG");
-        assertTrue("Did not return valid item list", list.equals(emptyLocationList));
+        Assert.assertTrue("Did not return valid item list", list.equals(emptyLocationList));
     }
 }

@@ -35,7 +35,7 @@ public class AppLandingActivity extends AppCompatActivity {
 
     public void onLogOutPressed (View view) {
         Intent intent = new Intent(this, WelcomeActivity.class);
-        model.signout();
+        //model.signout();
         startActivity(intent);
     }
 
