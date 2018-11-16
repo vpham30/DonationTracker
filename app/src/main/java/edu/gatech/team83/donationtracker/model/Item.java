@@ -130,10 +130,17 @@ public class Item implements Parcelable{
         this.locName = locName;
     }
 
+    /**
+     * empty constructor sets default
+     */
     public Item() {
         this("","","","", "");
     }
 
+    /**
+     * constructor required for parcelable
+     * @param in parcel which contains the data
+     */
     public Item(Parcel in) {
         this.name = in.readString();
         this.time = in.readString();
