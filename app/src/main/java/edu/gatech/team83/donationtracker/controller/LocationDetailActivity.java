@@ -38,7 +38,7 @@ public class LocationDetailActivity extends AppCompatActivity {
         longitude.setText(location.getLongitude());
         latitude.setText(location.getLatitude());
         address.setText(location.getAddress());
-        phone.setText(location.getPhonenumber());
+        //phone.setText(location.getPhonenumber());
     }
 
     public void onBackPressed(View v) {

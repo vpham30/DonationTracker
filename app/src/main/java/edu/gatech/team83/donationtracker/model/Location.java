@@ -123,18 +123,18 @@ public class Location implements Parcelable {
      */
     public void setAddress(String address) { this.address = address; }
 
-    /**
+    /*
      * A getter for location's phone number
      * @return location's phone number
-     */
+
     public String getPhoneNumber() { return phoneNumber; }
 
     /**
      * A setter for location's phone number
      * @param phoneNumber location's phone number
-     */
+     *
     public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
-
+    */
     /**
      * A getter for the location's inventory
      * @return a list of the inventory

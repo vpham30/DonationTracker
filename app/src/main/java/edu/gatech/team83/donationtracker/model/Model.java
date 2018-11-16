@@ -22,12 +22,12 @@ import java.util.Objects;
  */
 public final class Model {
 
-    private static final FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private static final FirebaseAuth mAuth = /*FirebaseAuth.getInstance()*/ null;
     private List<Location> locations;
     private List<Item> allItems;
     private long count;
     private String userType;
-    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private final FirebaseFirestore db = /*FirebaseFirestore.getInstance()*/ null;
 
     /** Singleton instance */
     private static final Model _instance = new Model();
@@ -180,13 +180,13 @@ public final class Model {
         return userType;
     }
 
-    /**
+    /*
      * signs out the current user
-     */
+
     public void signOut() {
         mAuth.signOut();
     }
-
+    */
 
     /**
      * Item search method
@@ -197,7 +197,7 @@ public final class Model {
      * @return an ArrayList containing all items matching the search query
      */
     public Iterable<Item> itemSearch(String searchField, String category, Location loc) {
-        if (searchField == null || category == null) {
+        if ((searchField == null) || (category == null)) {
             throw new NullPointerException("the searchField and category cannot be null");
         }
         Iterable<Item> toSearch;
@@ -237,6 +237,40 @@ public final class Model {
      */
     public List<Item> getAllItems() {
         return Collections.unmodifiableList(allItems);
+    }
+
+    /**
+     * loads dummy data
+     */
+    public void loadDefault() {
+        List<Location> locs = new ArrayList<>();
+        Location loc1 = new Location();
+        List<Item> inv1 = new ArrayList<>();
+        inv1.add(new Item("test1", "123",  "","Hat",""));
+        inv1.add(new Item("test2", "123",  "","Clothing",""));
+        inv1.add(new Item("test3", "123",  "","Kitchen",""));
+        loc1.setName("Loc1");
+        loc1.setId(1);
+        loc1.setInventory(inv1);
+        locs.add(loc1);
+        Location loc2 = new Location();
+        List<Item> inv2 = new ArrayList<>();
+        inv2.add(new Item("loc21", "345",  "","Hat",""));
+        inv2.add(new Item("loc22", "345",  "","Clothing",""));
+        inv2.add(new Item("loc23", "345",  "","Kitchen",""));
+        loc2.setName("Loc2");
+        loc2.setId(2);
+        loc2.setInventory(inv2);
+        locs.add(loc2);
+        locations = locs;
+        List<Item> all = new ArrayList<>();
+        all.add(new Item("test1", "123", "","Hat",""));
+        all.add(new Item("test2", "123",  "","Clothing",""));
+        all.add(new Item("test3", "123",  "","Kitchen",""));
+        all.add(new Item("loc21", "345",  "","Hat",""));
+        all.add(new Item("loc22", "345",  "","Clothing",""));
+        all.add(new Item("loc23", "345",  "","Kitchen",""));
+        allItems = all;
     }
 
 }

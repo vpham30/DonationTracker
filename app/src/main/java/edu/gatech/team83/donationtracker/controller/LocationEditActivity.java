@@ -19,7 +19,6 @@ public class LocationEditActivity extends AppCompatActivity {
     private EditText longitude;
     private EditText latitude;
     private EditText address;
-    private EditText phoneNumber;
     private Location location;
     private Model model;
 
@@ -32,7 +31,7 @@ public class LocationEditActivity extends AppCompatActivity {
         longitude = findViewById(R.id.longitude_input);
         latitude = findViewById(R.id.latitude_input);
         address = findViewById(R.id.address_input);
-        phoneNumber = findViewById(R.id.phone_input);
+        EditText phoneNumber = findViewById(R.id.phone_input);
         model = Model.getInstance();
 
         if(getIntent().hasExtra("Location")) {
@@ -43,7 +42,7 @@ public class LocationEditActivity extends AppCompatActivity {
             longitude.setText(location.getLongitude());
             latitude.setText(location.getLatitude());
             address.setText(location.getAddress());
-            phoneNumber.setText(location.getPhonenumber());
+            //phoneNumber.setText(location.getPhonenumber());
         }
 
         else {
@@ -64,7 +63,7 @@ public class LocationEditActivity extends AppCompatActivity {
         loc.setLongitude(longitude.getText().toString());
         loc.setLatitude(latitude.getText().toString());
         loc.setAddress(address.getText().toString());
-        loc.setPhonenumber(phoneNumber.getText().toString());
+        //loc.setPhonenumber(phoneNumber.getText().toString());
 
         if (getIntent().hasExtra("Location")) {
             model.editLocation(location, loc);

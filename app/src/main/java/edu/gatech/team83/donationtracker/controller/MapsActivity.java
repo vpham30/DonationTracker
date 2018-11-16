@@ -50,7 +50,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             marker = new LatLng(Double.parseDouble(l.getLatitude()),
                     Double.parseDouble(l.getLongitude()));
             googleMap.addMarker(new MarkerOptions().position(marker)
-                    .title(l.getName()).snippet(l.getPhonenumber()));
+                    .title(l.getName()).snippet(l.getName()));
         }
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(marker));
     }
